@@ -4,26 +4,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avaliação DISC</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<title>Avaliação Comportamental DISC — Método Bússola</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #F5F4F0;
+  --bg:        #FAF6F1;
   --surface:   #FFFFFF;
-  --surface2:  #ECEAE5;
-  --border:    #DDD9D2;
-  --text:      #1A1F2E;
-  --text2:     #5A6278;
-  --text3:     #9098A9;
-  --accent:    #2B4C8C;
-  --accent-bg: #EDF0F8;
+  --surface2:  #EDE8E1;
+  --border:    #DDD5C8;
+  --text:      #223245;
+  --text2:     #5A6E7F;
+  --text3:     #8A9BAC;
+  --accent:    #1A6B52;
+  --accent-bg: #E6F2ED;
   --d:         #C0392B; --d-bg: #FAEAEA;
   --i:         #CC6000; --i-bg: #FEF0E4;
   --s:         #228B5A; --s-bg: #E5F5EE;
   --c:         #1F6FA8; --c-bg: #E4EEF8;
-  --ok:        #228B5A;
-  --ff-d: 'Playfair Display', Georgia, serif;
-  --ff-b: 'DM Sans', system-ui, sans-serif;
+  --ok:        #1A6B52;
+  --ff-d: 'Fraunces', Georgia, serif;
+  --ff-b: 'Inter', system-ui, sans-serif;
+  --brand-green:  #1A6B52;
+  --brand-cream:  #FAF6F1;
+  --brand-gold:   #B4924A;
+  --brand-navy:   #344763;
   --r: 8px;
   --sh: 0 1px 3px rgba(26,31,46,.07), 0 4px 14px rgba(26,31,46,.06);
 }
@@ -37,8 +41,8 @@
     --text:      #E4E8F2;
     --text2:     #8B94AD;
     --text3:     #58637A;
-    --accent:    #5078CC;
-    --accent-bg: #192040;
+    --accent:    #36C078;
+    --accent-bg: #0D2A1B;
     --d:         #E06050; --d-bg: #2D1414;
     --i:         #E07A30; --i-bg: #2D1B0C;
     --s:         #36C078; --s-bg: #0D2A1B;
@@ -55,8 +59,8 @@
   --text:      #E4E8F2;
   --text2:     #8B94AD;
   --text3:     #58637A;
-  --accent:    #5078CC;
-  --accent-bg: #192040;
+  --accent:    #36C078;
+  --accent-bg: #0D2A1B;
   --d:         #E06050; --d-bg: #2D1414;
   --i:         #E07A30; --i-bg: #2D1B0C;
   --s:         #36C078; --s-bg: #0D2A1B;
@@ -119,6 +123,82 @@ body {
   max-width: 660px;
   margin: 0 auto;
   padding: 52px 20px 80px;
+}
+
+/* ── BRAND HEADER ──────────────────────────────────────── */
+.brand-header {
+  text-align: center;
+  padding: 40px 24px 32px;
+  margin: -52px -20px 36px;
+  background: linear-gradient(160deg, #FAF6F1 0%, #EDE8E1 100%);
+  border-bottom: 1px solid #DDD5C8;
+  position: relative;
+  overflow: hidden;
+}
+.brand-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(26,107,82,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.brand-logo-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.brand-logo-text {
+  text-align: left;
+}
+.brand-logo-name {
+  font-family: var(--ff-d);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--brand-navy, #344763);
+  line-height: 1.2;
+}
+.brand-logo-sub {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--brand-gold, #B4924A);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.brand-divider {
+  width: 40px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--brand-gold, #B4924A), transparent);
+  margin: 0 auto 20px;
+  border-radius: 1px;
+}
+.brand-title {
+  font-family: var(--ff-d);
+  font-size: clamp(1.55rem, 4.5vw, 2rem);
+  font-weight: 600;
+  color: var(--brand-navy, #344763);
+  line-height: 1.25;
+  margin-bottom: 10px;
+  text-wrap: balance;
+}
+.brand-subtitle {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  color: #5A6E7F;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 /* ── Q HEADER ──────────────────────────────────────────── */
@@ -760,6 +840,60 @@ input.field-invalid {
   border: 1px solid var(--border);
   border-radius: var(--r);
   box-shadow: var(--sh);
+}
+
+/* Report brand header */
+.r-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.r-brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.r-brand-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.r-brand-label {
+  text-align: left;
+}
+.r-brand-name {
+  font-family: var(--ff-d);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--brand-navy, #344763);
+  line-height: 1.2;
+}
+.r-brand-tag {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--brand-gold, #B4924A);
+  font-weight: 500;
+  margin-top: 1px;
+}
+.r-brand-badge {
+  font-family: var(--ff-b);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: 20px;
+  padding: 4px 12px;
 }
 
 .r-head .eyebrow { color: var(--ok); }
@@ -1475,6 +1609,19 @@ input.field-invalid {
   font-style: italic;
 }
 
+/* ── BRAND HEADER RESPONSIVE ───────────────────────────── */
+@media (max-width: 520px) {
+  .brand-header {
+    padding: 28px 18px 24px;
+    margin: -52px -20px 28px;
+  }
+  .brand-logo-img { width: 44px; height: 44px; }
+  .brand-title { font-size: 1.45rem; }
+  .brand-subtitle { font-size: 13.5px; }
+  .r-brand-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .r-brand-badge { align-self: flex-start; }
+}
+
 /* ── PRINT ─────────────────────────────────────────────── */
 @page {
   size: A4 portrait;
@@ -2164,10 +2311,20 @@ textarea.notes-area::placeholder { color: var(--text3); }
   <!-- ─── QUESTIONNAIRE ──────────────────────────────── -->
   <div id="questionnaire">
 
-    <div class="q-head">
-      <div class="eyebrow">Avaliação Comportamental</div>
-      <h1>Perfil DISC</h1>
-      <p>Instrumento de mapeamento de tendências comportamentais. Responda com base em como você realmente costuma se comportar, não como gostaria de ser.</p>
+    <!-- Brand header (capa) -->
+    <div class="brand-header">
+      <div class="brand-logo-wrap">
+        <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
+             alt="Método Bússola" class="brand-logo-img"
+             onerror="this.style.display='none'">
+        <div class="brand-logo-text">
+          <div class="brand-logo-name">Método Bússola</div>
+          <div class="brand-logo-sub">William Gutierrez</div>
+        </div>
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-title">Avaliação Comportamental DISC</div>
+      <p class="brand-subtitle">Instrumento de mapeamento de tendências comportamentais. Responda com base em como você realmente costuma se comportar, não como gostaria de ser.</p>
     </div>
 
     <div class="inst-card">
@@ -2329,6 +2486,19 @@ textarea.notes-area::placeholder { color: var(--text3); }
 
     <!-- 1. Cabeçalho -->
     <div class="r-head">
+      <!-- Brand bar -->
+      <div class="r-brand-bar">
+        <div class="r-brand-left">
+          <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
+               alt="Método Bússola" class="r-brand-logo"
+               onerror="this.style.display='none'">
+          <div class="r-brand-label">
+            <div class="r-brand-name">Método Bússola</div>
+            <div class="r-brand-tag">William Gutierrez</div>
+          </div>
+        </div>
+        <div class="r-brand-badge">Perfil DISC</div>
+      </div>
       <div class="eyebrow">Avaliação concluída</div>
       <h2>Perfil Comportamental DISC</h2>
       <div class="r-profile-badges">
@@ -2923,6 +3093,20 @@ function submit() {
   clearProgress();
 
   const scores = calcScores();
+
+  // ── Gerar URL do relatório (dados codificados em base64) ──────────────────
+  try {
+    const _pn = document.getElementById('pName')?.value?.trim()     || '';
+    const _pe = document.getElementById('pEmail')?.value?.trim()    || '';
+    const _pw = document.getElementById('pWhatsapp')?.value?.trim() || '';
+    const _pdEl = document.getElementById('pDate');
+    const _pd = _pdEl?.dataset?.iso || _pdEl?.value || '';
+    const _payload = JSON.stringify({ n:_pn, e:_pe, w:_pw, d:_pd,
+                                      m:scores.mais, l:scores.menos, z:scores.meio });
+    window._reportUrl = location.origin + location.pathname
+      + '?r=' + btoa(unescape(encodeURIComponent(_payload)));
+  } catch(e) { window._reportUrl = ''; }
+
   renderResults(scores);
 
   // Show completion screen first; results shown after user clicks "Ver meu resumo"
@@ -4259,7 +4443,8 @@ function showEmailToast() {
   setTimeout(() => toast.classList.remove('show'), 4000);
 }
 
-function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData) {
+function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData, reportUrl) {
+  if (window._suppressEmail) return; // carregando de URL — não reenviar
   if (typeof emailjs === 'undefined' || EMAIL_PUBLIC_KEY === 'SEU_PUBLIC_KEY') return;
 
   const colors = { D:'#C0392B', I:'#CC6000', S:'#228B5A', C:'#1F6FA8' };
@@ -4336,6 +4521,14 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
   const exemplosHTML = bullets(pData.carreira?.ambiente?.exemplos);
 
   // ── HTML do email ─────────────────────────────────────────
+  const reportBtnBlock = reportUrl ? `
+    <div style="text-align:center;margin-bottom:28px">
+      <a href="${reportUrl}" style="display:inline-block;background:#2B4C8C;color:#ffffff;font-family:Arial,sans-serif;font-weight:700;font-size:15px;padding:15px 36px;border-radius:8px;text-decoration:none;letter-spacing:.02em">
+        📊 Ver Relatório Completo
+      </a>
+      <div style="font-size:12px;color:#999;margin-top:10px">Clique para abrir o relatório com todos os gráficos e análises</div>
+    </div>` : '';
+
   const html = `<!DOCTYPE html><html><body style="margin:0;padding:20px;background:#f0f2f8;font-family:Arial,Helvetica,sans-serif">
   <div style="max-width:680px;margin:0 auto">
 
@@ -4345,6 +4538,9 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
       <div style="font-size:26px;font-weight:700;margin-bottom:4px">${name || '—'}</div>
       <div style="font-size:14px;opacity:.8">${dateFormatted}</div>
     </div>
+
+    <!-- Botão Ver Relatório -->
+    ${reportBtnBlock}
 
     <!-- Badge de perfil + contatos -->
     <div style="background:#edf0f8;border:1px solid #c8d3e8;border-top:none;padding:18px 30px 20px;border-radius:0 0 12px 12px;margin-bottom:20px">
@@ -4659,7 +4855,7 @@ function renderResults(s) {
 
   // Envio automático por email ao aplicador
   const dateFormatted = document.getElementById('rDate').textContent;
-  sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData);
+  sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData, window._reportUrl || '');
 }
 
 // ── PROFILE GRAPHS (classic DISC line charts) ─────────────────────────────────
@@ -5147,6 +5343,68 @@ checkSavedSession();
 (function initEmailJS() {
   if (typeof emailjs !== 'undefined' && EMAIL_PUBLIC_KEY !== 'SEU_PUBLIC_KEY') {
     emailjs.init({ publicKey: EMAIL_PUBLIC_KEY });
+  }
+})();
+
+// ── CARREGAR RELATÓRIO A PARTIR DA URL (?r=BASE64) ───────────────────────────
+function loadReportFromUrl(data) {
+  // Ocultar intro e formulário
+  ['intro','questionnaire','topBar'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const comp = document.getElementById('completionScreen');
+  if (comp) comp.classList.remove('active');
+
+  // Preencher campos do formulário para que renderResults() leia corretamente
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+  setVal('pName',      data.n);
+  setVal('pEmail',     data.e);
+  setVal('pWhatsapp',  data.w);
+  const pDateEl = document.getElementById('pDate');
+  if (pDateEl && data.d) { pDateEl.value = data.d; pDateEl.dataset.iso = data.d; }
+
+  // Reconstruir objeto de pontuações
+  const s = { mais: data.m, menos: data.l, meio: data.z };
+
+  // Renderizar sem reenviar email
+  window._suppressEmail = true;
+  renderResults(s);
+  window._suppressEmail = false;
+
+  // Exibir resultados
+  const resultsEl = document.getElementById('results');
+  if (resultsEl) {
+    resultsEl.style.display = 'block';
+    setMode('resp');
+    resultsEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+    setTimeout(() => { if (typeof animateBars === 'function') animateBars(); }, 120);
+  }
+
+  // Adicionar banner informativo no topo do relatório
+  const rHeader = document.getElementById('rName')?.closest('.res-header') || resultsEl?.firstElementChild;
+  const banner = document.createElement('div');
+  banner.style.cssText = 'background:#edf0f8;border:1px solid #c8d3e8;border-radius:8px;padding:12px 18px;margin-bottom:18px;font-size:13px;color:#2B4C8C;display:flex;align-items:center;gap:10px';
+  banner.innerHTML = '🔗 <span>Visualização do relatório via link direto — todos os gráficos e análises disponíveis.</span>';
+  if (resultsEl) resultsEl.prepend(banner);
+}
+
+// Detectar ?r= na URL ao carregar
+(function detectReportUrl() {
+  try {
+    const r = new URLSearchParams(location.search).get('r');
+    if (!r) return;
+    const data = JSON.parse(decodeURIComponent(escape(atob(r))));
+    if (!data.m || !data.l || !data.z) return; // dados inválidos
+    // Aguardar DOM pronto
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => loadReportFromUrl(data));
+    } else {
+      // DOM já pronto (script no fim da página)
+      setTimeout(() => loadReportFromUrl(data), 0);
+    }
+  } catch(e) {
+    console.warn('[DISC] URL de relatório inválida:', e);
   }
 })();
 </script>
