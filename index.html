@@ -1609,6 +1609,32 @@ input.field-invalid {
   font-style: italic;
 }
 
+/* ── PERSONALIZATION NOTES ─────────────────────────────── */
+.pers-note {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 13px 16px;
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.75;
+  margin-top: 16px;
+}
+.pers-note p { margin-bottom: 10px; }
+.pers-note p:last-child { margin-bottom: 0; }
+.pers-note-dev {
+  border-left-color: var(--i);
+  background: var(--i-bg);
+}
+.pers-note-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--i);
+  margin-bottom: 10px;
+}
+
 /* ── BRAND HEADER RESPONSIVE ───────────────────────────── */
 @media (max-width: 520px) {
   .brand-header {
@@ -2169,15 +2195,16 @@ textarea.notes-area::placeholder { color: var(--text3); }
 }
 .cs-btn:hover { opacity: .9; transform: translateY(-1px); }
 .cs-btn-sec {
-  background: transparent;
-  color: var(--text3);
-  box-shadow: none;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 10px 24px;
-  border: 1.5px solid var(--border);
+  background: var(--brand-gold, #B4924A);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(180,146,74,.30);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 32px;
+  border: none;
+  margin-top: 8px;
 }
-.cs-btn-sec:hover { background: var(--bg); color: var(--text1); }
+.cs-btn-sec:hover { opacity: .9; transform: translateY(-1px); }
 
 /* ── PIN MODAL ──────────────────────────────────────────── */
 #pinOverlay {
@@ -2436,6 +2463,7 @@ textarea.notes-area::placeholder { color: var(--text3); }
     <div class="cs-subtitle">Suas respostas foram registradas com sucesso. Em breve <strong>William Gutierrez</strong> entrará em contato para a sessão de devolutiva.</div>
     <div class="cs-meta">📅 <span id="csDate"></span></div>
     <button class="cs-btn" onclick="openScheduleModal()">📅 Agendar minha devolutiva agora</button>
+    <div style="margin:12px 0;font-size:12px;color:var(--text3);letter-spacing:.04em;text-transform:uppercase">ou</div>
     <button class="cs-btn cs-btn-sec" onclick="showResults()">Ver meu resumo →</button>
   </div>
 
@@ -2774,7 +2802,7 @@ const EMAIL_PUBLIC_KEY  = 'jlYLPHYy0QMdlU4hi';      // Account → API Keys
 const EMAIL_SERVICE_ID  = 'service_eqohjhg';        // Email Services → Service ID
 const EMAIL_TEMPLATE_ID = 'template_vwiye9r';        // Email Templates → Template ID
 const APPLICATOR_EMAIL     = 'williamgutierrez.psicologo@gmail.com';
-const APPLICATOR_PIN       = '1234'; // ← altere para o PIN desejado
+const APPLICATOR_PIN       = '2305'; // ← altere para o PIN desejado
 const APPLICATOR_WHATSAPP  = '5519998585655'; // WhatsApp do aplicador
 
 const FACTORS = [
@@ -4607,6 +4635,155 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
   });
 }
 
+// ── PERSONALIZATION HELPERS ───────────────────────────────────────────────────
+
+/**
+ * buildDecisaoNote — appended to rDecisao
+ * Reflects how concentrated the primary factor is and the decision style intensity.
+ */
+function buildDecisaoNote(prof, s) {
+  const primary   = s.mais[prof.primary];
+  const secondary = prof.key.length > 1 ? s.mais[prof.secondary] : 0;
+  const gap       = primary - secondary;
+  const intLvl    = scoreIntensity(primary);
+
+  let lines = [];
+
+  // Gap — how clear-cut vs. mixed the decision style is
+  if (gap >= 6) {
+    lines.push(`Seu estilo de decisão tende a ser <strong>bastante definido e consistente</strong>: a marcante predominância do fator ${prof.primary} (${primary} pts) sobre os demais indica que você costuma adotar uma abordagem bem característica diante de escolhas, com pouca variação de acordo com o contexto.`);
+  } else if (gap >= 3) {
+    lines.push(`Seu estilo de decisão mostra <strong>inclinação clara pelo fator ${prof.primary}</strong>, mas a presença do fator ${prof.secondary || 'secundário'} (${secondary} pts) introduz uma nuance importante: em determinadas situações, você pode alternar entre abordagens ou buscar um equilíbrio entre velocidade e análise.`);
+  } else if (prof.key.length > 1) {
+    lines.push(`Seu estilo de decisão é <strong>marcadamente combinado</strong>: os fatores ${prof.primary} e ${prof.secondary} apresentam pontuações próximas (${primary} e ${secondary} pts), o que sugere que você tende a integrar diferentes abordagens dependendo do contexto — ora mais analítico, ora mais relacional, ora mais assertivo.`);
+  }
+
+  // Intensity modifier
+  if (intLvl === 'int-vhigh') {
+    lines.push(`A alta intensidade do fator principal (${primary} pts) indica que esse padrão de decisão tende a aparecer de forma bastante marcada no seu comportamento observável.`);
+  } else if (intLvl === 'int-vlow') {
+    lines.push(`A intensidade moderada do fator principal (${primary} pts) sugere que esse padrão pode ser menos evidente no dia a dia e mais dependente do contexto e das demandas do ambiente.`);
+  }
+
+  if (!lines.length) return '';
+  return `<div class="pers-note"><p>${lines.join('</p><p>')}</p></div>`;
+}
+
+/**
+ * buildPressaoNote — prepended to rPressao
+ * Uses AEM (totalMenos) and diff to contextualize stress behavior.
+ */
+function buildPressaoNote(s, diff) {
+  const aem = s.menos.D + s.menos.I + s.menos.S + s.menos.C; // totalMenos
+
+  let lines = [];
+
+  // AEM — perceived environmental demands
+  if (aem >= 18) {
+    lines.push(`Você percebe o ambiente atual como <strong>altamente exigente</strong> (índice de adaptação: ${aem}/24): a pressão do contexto está sendo processada de forma intensa, o que tende a amplificar suas respostas comportamentais sob estresse.`);
+  } else if (aem >= 12) {
+    lines.push(`Você percebe o ambiente como <strong>moderadamente exigente</strong> (índice de adaptação: ${aem}/24), o que sugere um nível razoável de pressão contextual sendo processada no momento da avaliação.`);
+  } else {
+    lines.push(`O índice de adaptação ao ambiente é relativamente baixo (${aem}/24), sugerindo que você percebe o contexto atual como <strong>menos exigente ou mais confortável</strong> do que seria esperado em situações de alta demanda.`);
+  }
+
+  // Diff — adaptation cost
+  const totalDiff = Math.abs(diff.D) + Math.abs(diff.I) + Math.abs(diff.S) + Math.abs(diff.C);
+  if (totalDiff >= 12) {
+    lines.push(`O custo de adaptação entre seu perfil natural e o adaptado é <strong>elevado</strong> (variação total de ${totalDiff} pts entre os perfis): manter esse nível de adaptação por períodos prolongados pode gerar maior desgaste e reduzir a resiliência sob pressão.`);
+  } else if (totalDiff >= 6) {
+    lines.push(`Há uma adaptação moderada entre seu perfil natural e adaptado (variação de ${totalDiff} pts), indicando algum esforço comportamental para atender às demandas do contexto atual.`);
+  } else {
+    lines.push(`A diferença entre seu perfil natural e adaptado é pequena (${totalDiff} pts), sugerindo que você está operando de forma próxima ao seu padrão mais espontâneo — o que tende a favorecer a estabilidade emocional sob pressão.`);
+  }
+
+  return `<div class="pers-note"><p>${lines.join('</p><p>')}</p></div>`;
+}
+
+/**
+ * buildMelhoriaNote — prepended to rMelhoria (desenvolvimento)
+ * Highlights per-factor adaptation costs above threshold.
+ */
+function buildMelhoriaNote(diff) {
+  const factors  = ['D','I','S','C'];
+  const labels   = { D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade' };
+  const highCost = factors.filter(f => Math.abs(diff[f]) >= 4);
+
+  if (!highCost.length) return '';
+
+  const items = highCost.map(f => {
+    const delta = diff[f];
+    const dir   = delta > 0 ? `aumentando ${delta} pts acima` : `reduzindo ${Math.abs(delta)} pts abaixo`;
+    const tip   = delta > 0
+      ? `— o que pode gerar desgaste ao sustentar comportamentos mais intensos do que seu padrão natural`
+      : `— o que pode criar tensão ao suprimir comportamentos que são mais naturais para você`;
+    return `<strong>${labels[f]}</strong> (${dir} do seu padrão natural${tip})`;
+  });
+
+  return `<div class="pers-note pers-note-dev">
+    <div class="pers-note-title">Pontos de atenção no desenvolvimento</div>
+    <p>Os fatores com maior custo de adaptação no momento da avaliação são: ${items.join('; ')}. Esses são pontos que merecem atenção prioritária em seu processo de desenvolvimento comportamental.</p>
+  </div>`;
+}
+
+/**
+ * buildAmbienteNote — appended to rAmbiente
+ * Highlights divergence between natural and adapted profiles.
+ */
+function buildAmbienteNote(prof, natural, diff) {
+  const p1     = prof.primary;
+  const natVal = natural[p1];
+  const adpVal = diff[p1] + natVal; // adapted = natural + diff
+  const delta  = diff[p1];
+
+  if (Math.abs(delta) < 3) return ''; // not worth calling out
+
+  let lines = [];
+
+  if (delta > 0) {
+    lines.push(`No ambiente atual, você tende a <strong>amplificar seu fator ${p1}</strong> (${natVal} pts natural → ~${adpVal} pts adaptado): o contexto parece demandar mais desse comportamento do que corresponde ao seu padrão espontâneo.`);
+    lines.push(`Isso pode ser funcional no curto prazo, mas ambientes que exijam essa amplificação de forma contínua tendem a gerar desgaste progressivo.`);
+  } else {
+    lines.push(`No ambiente atual, você tende a <strong>moderar seu fator ${p1}</strong> (${natVal} pts natural → ~${adpVal} pts adaptado): o contexto parece demandar um comportamento menos intenso nessa dimensão do que corresponde ao seu padrão espontâneo.`);
+    lines.push(`Essa supressão pode ser estratégica, mas quando prolongada costuma gerar um senso de inautenticidade ou tensão interna.`);
+  }
+
+  return `<div class="pers-note"><p>${lines.join('</p><p>')}</p></div>`;
+}
+
+/**
+ * buildCarreiraNote — prepended to tendências section inside career card
+ * Contextualizes career tendencies with intensity and natural/adapted gap.
+ */
+function buildCarreiraNote(prof, s, natural, diff) {
+  const p1       = prof.primary;
+  const adapted  = s.mais[p1];
+  const nat      = natural[p1];
+  const delta    = diff[p1];
+  const intLvl   = scoreIntensity(adapted);
+  const labels   = { D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade' };
+
+  let lines = [];
+
+  // Intensity context for career
+  if (intLvl === 'int-vhigh') {
+    lines.push(`As tendências profissionais a seguir se expressam com <strong>alta intensidade</strong> no seu perfil adaptado: o fator ${labels[p1]} (${adapted} pts) está bastante proeminente, o que tende a tornar essas características muito visíveis no ambiente de trabalho.`);
+  } else if (intLvl === 'int-vlow') {
+    lines.push(`As tendências profissionais descritas podem se manifestar de forma <strong>mais sutil ou situacional</strong>, dado que o fator ${labels[p1]} (${adapted} pts) apresenta intensidade moderada no perfil atual.`);
+  }
+
+  // Natural vs adapted career gap
+  if (Math.abs(delta) >= 5) {
+    const dir = delta > 0 ? 'acima' : 'abaixo';
+    lines.push(`Vale observar que seu perfil <em>natural</em> no fator ${labels[p1]} é ${nat} pts — ${Math.abs(delta)} pts ${dir} do adaptado — o que indica que parte dessas tendências está sendo <strong>modulada pelo contexto atual</strong> e pode se expressar de forma diferente em ambientes com menos pressão ou mais alinhados ao seu padrão espontâneo.`);
+  }
+
+  if (!lines.length) return '';
+  return `<div class="pers-note" style="margin-bottom:16px"><p>${lines.join('</p><p>')}</p></div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 function renderResults(s) {
   const name      = document.getElementById('pName').value.trim();
   const whatsapp  = document.getElementById('pWhatsapp').value.trim();
@@ -4777,13 +4954,15 @@ function renderResults(s) {
     idxBody.innerHTML += `<tr><td>${row.n}</td><td><span class="idx-pill">${row.v}</span></td><td>${row.c}</td></tr>`;
   });
 
-  // Text sections
-  document.getElementById('rAmbiente').innerHTML=`<p>${pData.ambiente}</p>`;
-  document.getElementById('rDecisao').innerHTML=`<p>${pData.decisao}</p>`;
+  // Text sections — with personalization notes
+  document.getElementById('rAmbiente').innerHTML=
+    `<p>${pData.ambiente}</p>` + buildAmbienteNote(prof, natural, diff);
+  document.getElementById('rDecisao').innerHTML=
+    `<p>${pData.decisao}</p>` + buildDecisaoNote(prof, s);
 
   // Melhoria
   const melDiv = document.getElementById('rMelhoria');
-  melDiv.innerHTML='';
+  melDiv.innerHTML = buildMelhoriaNote(diff); // prepend personalization note
   (pData.melhoria||[]).forEach(blk=>{
     const fl=FACTORS.find(x=>x.key===blk.fator);
     melDiv.innerHTML+=`
@@ -4816,7 +4995,7 @@ function renderResults(s) {
 
   // Comportamento sob Pressão
   const pressaoDiv = document.getElementById('rPressao');
-  pressaoDiv.innerHTML='';
+  pressaoDiv.innerHTML = buildPressaoNote(s, diff); // personalization note first
   const pressao = pData.pressao || [];
   if (pressao.length) {
     pressao.forEach(blk=>{
@@ -4848,7 +5027,7 @@ function renderResults(s) {
   renderPctBars(s, natural);
 
   // Career sections
-  renderCarreira(pData);
+  renderCarreira(pData, prof, s, natural, diff);
 
   window._scores=s; window._pName=name; window._pDate=dateVal;
   window._pWhatsapp=whatsapp; window._pEmail=email;
@@ -5046,14 +5225,17 @@ function renderPctBars(s, natural) {
     </div>`).join('')}</div>`;
 }
 
-function renderCarreira(pData) {
+function renderCarreira(pData, prof, s, natural, diff) {
   const car = pData.carreira;
 
   // Tendências de Atuação
   const tendDiv = document.getElementById('rCarreiraTend');
   if (tendDiv) {
     if (car && car.tendencias && car.tendencias.length) {
-      tendDiv.innerHTML = car.tendencias.map(t=>`
+      const carreiraNote = (prof && s && natural && diff)
+        ? buildCarreiraNote(prof, s, natural, diff)
+        : '';
+      tendDiv.innerHTML = carreiraNote + car.tendencias.map(t=>`
         <div class="tend-item">
           <div class="tend-icon">${t.icon||'💼'}</div>
           <div class="tend-body">
