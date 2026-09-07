@@ -4,30 +4,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avaliação Comportamental DISC — Método Bússola</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Avaliação DISC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #FAF6F1;
+  --bg:        #F5F4F0;
   --surface:   #FFFFFF;
-  --surface2:  #EDE8E1;
-  --border:    #DDD5C8;
-  --text:      #223245;
-  --text2:     #5A6E7F;
-  --text3:     #8A9BAC;
-  --accent:    #1A6B52;
-  --accent-bg: #E6F2ED;
+  --surface2:  #ECEAE5;
+  --border:    #DDD9D2;
+  --text:      #1A1F2E;
+  --text2:     #5A6278;
+  --text3:     #9098A9;
+  --accent:    #2B4C8C;
+  --accent-bg: #EDF0F8;
   --d:         #C0392B; --d-bg: #FAEAEA;
   --i:         #CC6000; --i-bg: #FEF0E4;
   --s:         #228B5A; --s-bg: #E5F5EE;
   --c:         #1F6FA8; --c-bg: #E4EEF8;
-  --ok:        #1A6B52;
-  --ff-d: 'Fraunces', Georgia, serif;
-  --ff-b: 'Inter', system-ui, sans-serif;
-  --brand-green:  #1A6B52;
-  --brand-cream:  #FAF6F1;
-  --brand-gold:   #B4924A;
-  --brand-navy:   #344763;
+  --ok:        #228B5A;
+  --ff-d: 'Playfair Display', Georgia, serif;
+  --ff-b: 'DM Sans', system-ui, sans-serif;
   --r: 8px;
   --sh: 0 1px 3px rgba(26,31,46,.07), 0 4px 14px rgba(26,31,46,.06);
 }
@@ -41,8 +37,8 @@
     --text:      #E4E8F2;
     --text2:     #8B94AD;
     --text3:     #58637A;
-    --accent:    #36C078;
-    --accent-bg: #0D2A1B;
+    --accent:    #5078CC;
+    --accent-bg: #192040;
     --d:         #E06050; --d-bg: #2D1414;
     --i:         #E07A30; --i-bg: #2D1B0C;
     --s:         #36C078; --s-bg: #0D2A1B;
@@ -59,8 +55,8 @@
   --text:      #E4E8F2;
   --text2:     #8B94AD;
   --text3:     #58637A;
-  --accent:    #36C078;
-  --accent-bg: #0D2A1B;
+  --accent:    #5078CC;
+  --accent-bg: #192040;
   --d:         #E06050; --d-bg: #2D1414;
   --i:         #E07A30; --i-bg: #2D1B0C;
   --s:         #36C078; --s-bg: #0D2A1B;
@@ -123,82 +119,6 @@ body {
   max-width: 660px;
   margin: 0 auto;
   padding: 52px 20px 80px;
-}
-
-/* ── BRAND HEADER ──────────────────────────────────────── */
-.brand-header {
-  text-align: center;
-  padding: 40px 24px 32px;
-  margin: -52px -20px 36px;
-  background: linear-gradient(160deg, #FAF6F1 0%, #EDE8E1 100%);
-  border-bottom: 1px solid #DDD5C8;
-  position: relative;
-  overflow: hidden;
-}
-.brand-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(26,107,82,.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-.brand-logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 22px;
-}
-.brand-logo-img {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.brand-logo-text {
-  text-align: left;
-}
-.brand-logo-name {
-  font-family: var(--ff-d);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--brand-navy, #344763);
-  line-height: 1.2;
-}
-.brand-logo-sub {
-  font-family: var(--ff-b);
-  font-size: 11px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--brand-gold, #B4924A);
-  font-weight: 500;
-  margin-top: 2px;
-}
-.brand-divider {
-  width: 40px;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--brand-gold, #B4924A), transparent);
-  margin: 0 auto 20px;
-  border-radius: 1px;
-}
-.brand-title {
-  font-family: var(--ff-d);
-  font-size: clamp(1.55rem, 4.5vw, 2rem);
-  font-weight: 600;
-  color: var(--brand-navy, #344763);
-  line-height: 1.25;
-  margin-bottom: 10px;
-  text-wrap: balance;
-}
-.brand-subtitle {
-  font-family: var(--ff-b);
-  font-size: 14px;
-  color: #5A6E7F;
-  line-height: 1.7;
-  max-width: 480px;
-  margin: 0 auto;
 }
 
 /* ── Q HEADER ──────────────────────────────────────────── */
@@ -830,7 +750,7 @@ input.field-invalid {
 }
 
 /* ── RESULTS ───────────────────────────────────────────── */
-#results { display: none; padding-bottom: 80px; } /* space for floating bar */
+#results { display: none; }
 
 .r-head {
   text-align: center;
@@ -840,60 +760,6 @@ input.field-invalid {
   border: 1px solid var(--border);
   border-radius: var(--r);
   box-shadow: var(--sh);
-}
-
-/* Report brand header */
-.r-brand-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
-.r-brand-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.r-brand-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.r-brand-label {
-  text-align: left;
-}
-.r-brand-name {
-  font-family: var(--ff-d);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--brand-navy, #344763);
-  line-height: 1.2;
-}
-.r-brand-tag {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: var(--brand-gold, #B4924A);
-  font-weight: 500;
-  margin-top: 1px;
-}
-.r-brand-badge {
-  font-family: var(--ff-b);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  border-radius: 20px;
-  padding: 4px 12px;
 }
 
 .r-head .eyebrow { color: var(--ok); }
@@ -1597,18 +1463,6 @@ input.field-invalid {
   line-height: 1.75;
   margin-bottom: 16px;
 }
-.narr-greeting {
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 16px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-}
-.narr-greeting strong {
-  color: var(--brand-navy, #344763);
-  font-weight: 700;
-}
 .intens-addendum {
   background: var(--surface2);
   border-left: 3px solid var(--border);
@@ -1619,108 +1473,6 @@ input.field-invalid {
   line-height: 1.75;
   margin-top: 10px;
   font-style: italic;
-}
-
-/* ── PERSONALIZATION NOTES ─────────────────────────────── */
-.pers-note {
-  background: var(--surface2);
-  border-left: 3px solid var(--accent);
-  border-radius: 6px;
-  padding: 13px 16px;
-  font-size: 13.5px;
-  color: var(--text2);
-  line-height: 1.75;
-  margin-top: 16px;
-}
-.pers-note p { margin-bottom: 10px; }
-.pers-note p:last-child { margin-bottom: 0; }
-.pers-note-dev {
-  border-left-color: var(--i);
-  background: var(--i-bg);
-}
-.pers-note-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--i);
-  margin-bottom: 10px;
-}
-
-/* ── SCHEDULE CTA (report top banner + floating bottom bar) ── */
-.sched-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  background: linear-gradient(135deg, #1A6B52 0%, #155a44 100%);
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  color: #fff;
-}
-.sched-banner-text {
-  font-size: 13.5px;
-  font-weight: 500;
-  line-height: 1.45;
-  flex: 1;
-}
-.sched-banner-text strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 2px; }
-.sched-banner-btn {
-  flex-shrink: 0;
-  background: #fff;
-  color: #1A6B52;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity .15s;
-}
-.sched-banner-btn:hover { opacity: .88; }
-
-.float-sched-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 800;
-  background: #1A6B52;
-  padding: 14px 20px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,.18);
-}
-.float-sched-bar button {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  background: #fff;
-  color: #1A6B52;
-  border: none;
-  border-radius: 10px;
-  padding: 14px 24px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity .15s;
-}
-.float-sched-bar button:hover { opacity: .88; }
-.float-sched-bar.visible { display: block; }
-
-/* ── BRAND HEADER RESPONSIVE ───────────────────────────── */
-@media (max-width: 520px) {
-  .brand-header {
-    padding: 28px 18px 24px;
-    margin: -52px -20px 28px;
-  }
-  .brand-logo-img { width: 44px; height: 44px; }
-  .brand-title { font-size: 1.45rem; }
-  .brand-subtitle { font-size: 13.5px; }
-  .r-brand-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .r-brand-badge { align-self: flex-start; }
 }
 
 /* ── PRINT ─────────────────────────────────────────────── */
@@ -1738,12 +1490,10 @@ input.field-invalid {
   .r-actions,
   .wiz-progress-strip,
   .restore-card,
-  #wizNav,
-  .float-sched-bar,
-  .sched-banner { display: none !important; }
+  #wizNav { display: none !important; }
 
   /* ── Always show results ── */
-  #results { display: block !important; padding-bottom: 0 !important; }
+  #results { display: block !important; }
 
   /* ── Base layout ── */
   body {
@@ -1831,6 +1581,118 @@ input.field-invalid {
 @media (prefers-reduced-motion: reduce) {
   .bar-fill { transition: none; }
   .pg-fill  { transition: none; }
+}
+
+/* ── QUADRANT CHART ─────────────────────────────────────── */
+.quad-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.quad-svg-wrap {
+  width: 100%;
+  max-width: 280px;
+}
+
+.quad-svg-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Quadrant zone fills */
+.qd-zone-d { fill: var(--d-bg); }
+.qd-zone-i { fill: var(--i-bg); }
+.qd-zone-s { fill: var(--s-bg); }
+.qd-zone-c { fill: var(--c-bg); }
+
+/* Axis lines */
+.qd-axis {
+  stroke: var(--border);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+/* Label text */
+.qd-txt {
+  fill: var(--text3);
+  font-family: var(--ff-b);
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.qd-lbl-d { fill: var(--d); }
+.qd-lbl-i { fill: var(--i); }
+.qd-lbl-s { fill: var(--s); }
+.qd-lbl-c { fill: var(--c); }
+
+/* Connection line between Adapted and Natural */
+.qd-conn {
+  stroke: var(--border);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+}
+
+/* Plot points */
+.qd-pt-adp {
+  fill: var(--accent);
+  stroke: var(--surface);
+  stroke-width: 2;
+  filter: drop-shadow(0 1px 3px rgba(43,76,140,.35));
+}
+
+.qd-pt-nat {
+  fill: var(--s);
+  stroke: var(--surface);
+  stroke-width: 2;
+  filter: drop-shadow(0 1px 2px rgba(34,139,90,.25));
+}
+
+/* Legend */
+.quad-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quad-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 500;
+}
+
+.quad-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.quad-dot.adp { background: var(--accent); }
+.quad-dot.nat { background: var(--s); }
+
+/* Quadrant name labels inside zones */
+.qd-zone-name {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .55;
+}
+
+@media (max-width: 520px) {
+  .quad-svg-wrap { max-width: 240px; }
+}
+
+@media print {
+  .quad-svg-wrap { max-width: 200px !important; }
 }
 
 /* ── CONSISTÊNCIA (Semáforo) ────────────────────────────── */
@@ -1932,6 +1794,10 @@ input.field-invalid {
 /* Print: hide consistency card */
 @media print {
   .consist-card { display: none !important; }
+  /* Ethics card: expand details for print */
+  #rcEtica details { display: block; }
+  #rcEtica details > div { display: flex !important; }
+  #rcEtica summary span:last-child { display: none; }
 }
 
 /* ── APPLICATOR NOTES ───────────────────────────────────── */
@@ -2135,6 +2001,78 @@ textarea.notes-area::placeholder { color: var(--text3); }
 .g3-factor-text { font-size:13.5px; color:var(--text2); line-height:1.65; }
 .g3-combo       { background:var(--surface2); border-left:3px solid var(--border); border-radius:6px; padding:13px 16px; font-size:13.5px; color:var(--text2); line-height:1.75; margin-top:14px; }
 .g3-consistent  { background:var(--accent-bg); border-left:3px solid var(--accent); border-radius:6px; padding:13px 16px; font-size:13.5px; color:var(--text2); line-height:1.75; }
+.g3-reflexao    { background:var(--surface2); border:1px dashed var(--border); border-radius:6px; padding:12px 16px; font-size:13px; color:var(--text2); line-height:1.75; margin-top:14px; font-style:italic; }
+.g3-ref-label   { display:block; font-style:normal; font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text3); margin-bottom:6px; }
+
+/* ── COMPREENSÃO DOS OUTROS ──────────────────────────────── */
+.outros-map-title { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.outros-eixos-note { font-size:12px; color:var(--text3); margin:8px 0 12px; line-height:1.6; font-style:italic; }
+.outros-2grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+@media (max-width:520px) { .outros-2grid { grid-template-columns:1fr; } }
+.outros-card { border:1px solid var(--border); border-radius:8px; padding:13px 14px; }
+.outros-card.f-d { border-top:3px solid var(--d); }
+.outros-card.f-i { border-top:3px solid var(--i); }
+.outros-card.f-s { border-top:3px solid var(--s); }
+.outros-card.f-c { border-top:3px solid var(--c); }
+.outros-card-head { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.outros-factor-badge { display:inline-block; font-size:10.5px; font-weight:700; padding:2px 9px; border-radius:20px; letter-spacing:.05em; flex-shrink:0; }
+.outros-card-title { font-size:13px; font-weight:700; color:var(--text); }
+.outros-card-sub { font-size:10.5px; color:var(--text3); margin-bottom:7px; font-style:italic; }
+.outros-signals { list-style:none; display:flex; flex-direction:column; gap:3px; }
+.outros-signals li { font-size:12.5px; color:var(--text2); line-height:1.5; display:flex; gap:6px; align-items:flex-start; }
+.outros-signals li::before { content:'·'; color:var(--text3); flex-shrink:0; margin-top:1px; }
+.outros-section-head { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin:18px 0 4px; padding-top:14px; border-top:1px solid var(--border); }
+.tensao-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+@media (max-width:520px) { .tensao-grid { grid-template-columns:1fr; } }
+.tensao-card { border:1px solid var(--border); border-radius:8px; padding:13px 14px; }
+.tensao-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.tensao-badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 9px; border-radius:20px; flex-shrink:0; letter-spacing:.04em; }
+.tensao-title { font-size:13px; font-weight:700; color:var(--text); }
+.tensao-tensao { font-size:13px; color:var(--text2); line-height:1.65; margin-bottom:9px; }
+.tensao-tip { font-size:12.5px; color:var(--text2); line-height:1.6; background:var(--surface2); border-radius:6px; padding:9px 12px; }
+.tensao-tip-label { display:block; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text3); margin-bottom:4px; font-style:normal; }
+@media print {
+  .tensao-grid { grid-template-columns:1fr 1fr !important; }
+  .outros-2grid { grid-template-columns:1fr 1fr !important; }
+}
+
+/* ── MAPA DE PALAVRAS ────────────────────────────────────── */
+.palavras-section       { margin-bottom:22px; }
+.palavras-section-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin-bottom:10px; }
+.palavras-cloud         { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; align-items:baseline; }
+.palavras-note          { font-size:11.5px; color:var(--text3); font-style:italic; line-height:1.55; }
+.p-word                 { display:inline-block; padding:5px 13px; border-radius:20px; font-weight:600; line-height:1.2; transition:transform .15s; cursor:default; }
+.p-word:hover           { transform:scale(1.06); }
+.p-word.sz-xl           { font-size:17px; }
+.p-word.sz-lg           { font-size:14px; }
+.p-word.sz-md           { font-size:12.5px; }
+.p-word.sz-sm           { font-size:11.5px; }
+.p-word.sz-xs           { font-size:10.5px; }
+.p-word.f-d             { background:var(--d-bg); color:var(--d); }
+.p-word.f-i             { background:var(--i-bg); color:var(--i); }
+.p-word.f-s             { background:var(--s-bg); color:var(--s); }
+.p-word.f-c             { background:var(--c-bg); color:var(--c); }
+.p-word.muted           { opacity:.45; }
+
+/* ── MODAL DE EXPORTAÇÃO ─────────────────────────────────── */
+.export-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9000; display:none; align-items:center; justify-content:center; padding:16px; }
+.export-overlay.open { display:flex; }
+.export-modal   { background:var(--surface); border:1px solid var(--border); border-radius:12px; width:100%; max-width:680px; max-height:90vh; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.3); }
+.export-head    { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); }
+.export-head-title { font-size:15px; font-weight:700; color:var(--text); }
+.export-head-sub   { font-size:11.5px; color:var(--text3); margin-top:2px; }
+.export-close   { background:none; border:none; cursor:pointer; color:var(--text3); font-size:20px; line-height:1; padding:4px 8px; border-radius:6px; transition:background .15s; }
+.export-close:hover { background:var(--surface2); color:var(--text); }
+.export-tabs    { display:flex; gap:4px; padding:12px 20px 0; border-bottom:1px solid var(--border); }
+.export-tab     { background:none; border:none; cursor:pointer; font-size:12.5px; font-weight:600; color:var(--text3); padding:8px 14px; border-bottom:2px solid transparent; transition:color .15s,border-color .15s; }
+.export-tab.active  { color:var(--accent); border-bottom-color:var(--accent); }
+.export-tab:hover:not(.active) { color:var(--text2); }
+.export-body    { flex:1; overflow:auto; padding:16px 20px; }
+.export-textarea{ width:100%; box-sizing:border-box; height:340px; resize:none; font-family:'Courier New',monospace; font-size:11.5px; line-height:1.6; color:var(--text2); background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 14px; outline:none; }
+.export-foot    { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; border-top:1px solid var(--border); gap:12px; flex-wrap:wrap; }
+.export-foot-note { font-size:11.5px; color:var(--text3); line-height:1.5; }
+.export-copy-btn{ font-size:12px; padding:8px 20px; }
+
 .g3-meio-note   { font-size:11.5px; margin: 2px 0 8px 0; padding:6px 12px; border-radius:5px; line-height:1.55; }
 .g3-meio-polar  { background:var(--i-bg);  color:var(--i);  border-left:2px solid var(--i); }
 .g3-meio-neutro { background:var(--c-bg);  color:var(--c);  border-left:2px solid var(--c); }
@@ -2259,32 +2197,28 @@ textarea.notes-area::placeholder { color: var(--text3); }
   margin-bottom: 36px;
 }
 .cs-btn {
-  display: block;
-  width: 100%;
-  max-width: 340px;
-  padding: 16px 24px;
+  padding: 14px 32px;
   font-size: 15px;
   font-weight: 600;
   background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: opacity .15s, transform .15s;
-  box-shadow: 0 4px 16px rgba(26,107,82,.30);
+  box-shadow: 0 4px 16px rgba(43,76,140,.25);
 }
-.cs-btn:hover { opacity: .9; transform: translateY(-2px); }
+.cs-btn:hover { opacity: .9; transform: translateY(-1px); }
 .cs-btn-sec {
-  background: var(--brand-gold, #B4924A);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(180,146,74,.30);
-  font-weight: 600;
-  font-size: 15px;
-  padding: 16px 24px;
-  border: none;
-  margin-top: 0;
+  background: transparent;
+  color: var(--text3);
+  box-shadow: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 24px;
+  border: 1.5px solid var(--border);
 }
-.cs-btn-sec:hover { opacity: .9; transform: translateY(-2px); }
+.cs-btn-sec:hover { background: var(--bg); color: var(--text1); }
 
 /* ── PIN MODAL ──────────────────────────────────────────── */
 #pinOverlay {
@@ -2418,20 +2352,10 @@ textarea.notes-area::placeholder { color: var(--text3); }
   <!-- ─── QUESTIONNAIRE ──────────────────────────────── -->
   <div id="questionnaire">
 
-    <!-- Brand header (capa) -->
-    <div class="brand-header">
-      <div class="brand-logo-wrap">
-        <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
-             alt="Método Bússola" class="brand-logo-img"
-             onerror="this.style.display='none'">
-        <div class="brand-logo-text">
-          <div class="brand-logo-name">Método Bússola</div>
-          <div class="brand-logo-sub">William Gutierrez</div>
-        </div>
-      </div>
-      <div class="brand-divider"></div>
-      <div class="brand-title">Avaliação Comportamental DISC</div>
-      <p class="brand-subtitle">Instrumento de mapeamento de tendências comportamentais. Responda com base em como você realmente costuma se comportar, não como gostaria de ser.</p>
+    <div class="q-head">
+      <div class="eyebrow">Avaliação Comportamental</div>
+      <h1>Perfil DISC</h1>
+      <p>Instrumento de mapeamento de tendências comportamentais. Responda com base em como você realmente costuma se comportar, não como gostaria de ser.</p>
     </div>
 
     <div class="inst-card">
@@ -2472,6 +2396,10 @@ textarea.notes-area::placeholder { color: var(--text3); }
         <div class="field">
           <label>Data de aplicação</label>
           <input type="text" id="pDate" readonly style="background:var(--bg);color:var(--text3);cursor:default;border-color:var(--border)">
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label for="pFinalidade">Finalidade / Contexto <span style="color:var(--text3);font-weight:400">(opcional)</span></label>
+          <input type="text" id="pFinalidade" placeholder="Ex.: processo seletivo, desenvolvimento de liderança, coaching…" oninput="saveProgress()">
         </div>
       </div>
 
@@ -2542,11 +2470,8 @@ textarea.notes-area::placeholder { color: var(--text3); }
     <div class="cs-title" id="csTitle">Avaliação concluída!</div>
     <div class="cs-subtitle">Suas respostas foram registradas com sucesso. Em breve <strong>William Gutierrez</strong> entrará em contato para a sessão de devolutiva.</div>
     <div class="cs-meta">📅 <span id="csDate"></span></div>
-    <div style="width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0;margin-top:8px">
-      <button class="cs-btn" onclick="openScheduleModal()">📅 Agendar minha devolutiva agora</button>
-      <div style="margin:14px 0 10px;font-size:11px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase">ou</div>
-      <button class="cs-btn cs-btn-sec" onclick="showResults()">Ver meu resumo →</button>
-    </div>
+    <button class="cs-btn" onclick="openScheduleModal()">📅 Agendar minha devolutiva agora</button>
+    <button class="cs-btn cs-btn-sec" onclick="showResults()">Ver meu resumo →</button>
   </div>
 
   <!-- ─── MODAL AGENDAMENTO ─────────────────────────── -->
@@ -2594,30 +2519,55 @@ textarea.notes-area::placeholder { color: var(--text3); }
       </div>
     </div>
 
-    <!-- CTA topo — visível apenas no modo respondente -->
-    <div class="sched-banner resp-blur" id="schedBannerTop">
-      <div class="sched-banner-text">
-        <strong>📅 Agende sua devolutiva</strong>
-        Entenda seu perfil com profundidade em uma sessão com William Gutierrez.
+    <!-- 1a. Capa de abertura + aviso ético -->
+    <div id="rcEtica" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px;box-shadow:var(--sh)">
+
+      <!-- Cabeçalho da capa -->
+      <div style="background:var(--accent);padding:20px 24px 18px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span style="font-size:22px;line-height:1">📊</span>
+          <span style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:#fff;letter-spacing:.04em">Avaliação Comportamental DISC</span>
+        </div>
+        <p style="font-size:12.5px;color:rgba(255,255,255,.8);margin:0;line-height:1.5">Instrumento descritivo de tendências comportamentais · Uso profissional</p>
       </div>
-      <button class="sched-banner-btn" onclick="openScheduleModal()">Agendar →</button>
+
+      <!-- Corpo da capa -->
+      <div style="padding:20px 24px;display:flex;flex-direction:column;gap:14px">
+        <p style="font-size:13.5px;color:var(--text2);line-height:1.8;margin:0">
+          O DISC é um <strong style="color:var(--text)">modelo descritivo de tendências comportamentais observáveis</strong>, e não um instrumento de medida de inteligência, competência profissional ou saúde mental. Os resultados refletem a autopercepção do respondente no momento do preenchimento e descrevem <em>tendências</em> — não características fixas, absolutas ou definitivas da pessoa.
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="background:var(--s-bg);border-radius:8px;padding:13px 15px;border-left:3px solid var(--s)">
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--s);margin-bottom:8px">✓ Para que este relatório serve</div>
+            <ul style="list-style:none;font-size:12.5px;color:var(--text2);line-height:1.7;padding:0;margin:0;display:flex;flex-direction:column;gap:3px">
+              <li>→ Compreender estilos de comunicação e decisão</li>
+              <li>→ Identificar preferências de ambiente e ritmo</li>
+              <li>→ Mapear pontos de atenção para o desenvolvimento</li>
+              <li>→ Antecipar reações típicas sob pressão ou mudança</li>
+            </ul>
+          </div>
+          <div style="background:var(--d-bg);border-radius:8px;padding:13px 15px;border-left:3px solid var(--d)">
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--d);margin-bottom:8px">✗ Para que este relatório não serve</div>
+            <ul style="list-style:none;font-size:12.5px;color:var(--text2);line-height:1.7;padding:0;margin:0;display:flex;flex-direction:column;gap:3px">
+              <li>→ Diagnosticar condições psicológicas ou clínicas</li>
+              <li>→ Definir se uma pessoa é apta ou inapta para uma função</li>
+              <li>→ Medir inteligência, capacidade técnica ou potencial</li>
+              <li>→ Substituir processos formais de avaliação psicológica</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:var(--surface2);border-radius:8px;padding:12px 15px;border:1px solid var(--border)">
+          <p style="font-size:12px;color:var(--text3);line-height:1.7;margin:0">
+            <strong style="color:var(--text2);font-weight:600">Uso responsável:</strong> Este relatório deve ser interpretado em conjunto com o contexto do avaliado — histórico, momento de vida, condições da aplicação — de preferência em uma sessão de devolutiva conduzida por profissional habilitado. Os resultados não devem ser utilizados como único critério em decisões de alto impacto, como seleção, promoção ou desligamento.
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- 1. Cabeçalho -->
     <div class="r-head">
-      <!-- Brand bar -->
-      <div class="r-brand-bar">
-        <div class="r-brand-left">
-          <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
-               alt="Método Bússola" class="r-brand-logo"
-               onerror="this.style.display='none'">
-          <div class="r-brand-label">
-            <div class="r-brand-name">Método Bússola</div>
-            <div class="r-brand-tag">William Gutierrez</div>
-          </div>
-        </div>
-        <div class="r-brand-badge">Perfil DISC</div>
-      </div>
       <div class="eyebrow">Avaliação concluída</div>
       <h2>Perfil Comportamental DISC</h2>
       <div class="r-profile-badges">
@@ -2629,6 +2579,7 @@ textarea.notes-area::placeholder { color: var(--text3); }
       </div>
       <div class="r-name" id="rName"></div>
       <div class="r-date" id="rDate"></div>
+      <div id="rFinalidade" style="display:none;margin-top:6px;font-size:12px;color:var(--text3);font-weight:500;letter-spacing:.03em"></div>
     </div>
 
     <!-- 1b. Indicador de Consistência (visível apenas para o aplicador) -->
@@ -2640,7 +2591,14 @@ textarea.notes-area::placeholder { color: var(--text3); }
       <div id="profileGraphsWrap" style="display:flex;gap:12px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-top:8px"></div>
     </div>
 
-    <!-- 1d. Análise de Neutralidade (apenas aplicador) -->
+    <!-- 1d. Mapa de Quadrante (visível ao respondente) -->
+    <div class="rcard" id="rcQuadrante">
+      <div class="rcard-title">Mapa de Quadrante DISC</div>
+      <p style="font-size:13px;color:var(--text3);line-height:1.6;margin-bottom:14px">Posiciona os dois perfis no plano cartesiano DISC. O eixo vertical separa comportamentos mais <strong>ativos</strong> (D e I) dos mais <strong>passivos</strong> (S e C); o eixo horizontal separa o foco em <strong>tarefas</strong> (D e C) do foco em <strong>pessoas</strong> (I e S).</p>
+      <div class="quad-wrap" id="rQuadrant"></div>
+    </div>
+
+    <!-- 1e. Análise de Neutralidade (apenas aplicador) -->
     <div class="rcard applicator-only" id="rcNeutrality">
       <div class="rcard-title">Índice de Neutralidade por Fator</div>
       <p style="font-size:13px;color:var(--text3);line-height:1.6;margin-bottom:16px">Indica quantas vezes cada fator ficou em posição intermediária — nem escolhido como mais, nem como menos representativo. Um índice elevado sugere neutralidade ou ambivalência em relação àquela característica. Um índice baixo indica que o fator é fortemente reconhecido pela pessoa, seja de forma positiva (alto em Percebido) ou como contraste (alto em Natural).</p>
@@ -2694,6 +2652,7 @@ textarea.notes-area::placeholder { color: var(--text3); }
     <!-- 3b-2. Análise Narrativa do Gráfico III -->
     <div class="rcard resp-blur" id="rcGraph3">
       <div class="rcard-title">Análise do Gráfico III — Padrão de Adaptação</div>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:14px">O Gráfico III compara o comportamento que a pessoa percebe como natural com o que apresenta no contexto atual. Fatores amplificados indicam esforço de adaptação ao ambiente; fatores suprimidos indicam contenção de tendências naturais. Ambos os movimentos têm um custo energético.</p>
       <div id="rGraph3Narrative"></div>
     </div>
 
@@ -2823,6 +2782,95 @@ textarea.notes-area::placeholder { color: var(--text3); }
       <div class="adapt-grid" id="rAdaptabilidade"></div>
     </div>
 
+    <!-- 14. Compreensão dos Outros -->
+    <div class="rcard resp-blur" id="rcOutros">
+      <div class="rcard-title">Compreensão dos Outros</div>
+      <p style="font-size:13.5px;color:var(--text2);line-height:1.75;margin-bottom:16px">Identificar o estilo comportamental dos outros abre espaço para interações mais eficazes. O mapa abaixo descreve padrões observáveis — não como rótulos definitivos, mas como pontos de partida para a compreensão e a adaptação.</p>
+
+      <!-- Eixos de identificação -->
+      <div class="outros-map-title">Como identificar o estilo dos outros</div>
+      <p class="outros-eixos-note">Observe dois eixos: o <strong>ritmo</strong> (direto e decisivo ↔ indireto e ponderado) e o <strong>foco</strong> (tarefas e resultados ↔ pessoas e relacionamentos). A combinação dos dois aponta para o estilo predominante.</p>
+      <div class="outros-2grid">
+        <div class="outros-card f-d">
+          <div class="outros-card-head">
+            <span class="outros-factor-badge" style="background:var(--d-bg);color:var(--d)">D</span>
+            <span class="outros-card-title">Dominância</span>
+          </div>
+          <div class="outros-card-sub">Direto · Focado em tarefas</div>
+          <ul class="outros-signals">
+            <li>Fala rápido, vai direto ao ponto</li>
+            <li>Decide com agilidade; pode parecer abrupto</li>
+            <li>Foca em resultados, não em processo</li>
+            <li>Prefere reuniões curtas e objetivas</li>
+            <li>Pode interromper ou impacientar-se com detalhes</li>
+          </ul>
+        </div>
+        <div class="outros-card f-c">
+          <div class="outros-card-head">
+            <span class="outros-factor-badge" style="background:var(--c-bg);color:var(--c)">C</span>
+            <span class="outros-card-title">Conformidade</span>
+          </div>
+          <div class="outros-card-sub">Indireto · Focado em tarefas</div>
+          <ul class="outros-signals">
+            <li>Faz muitas perguntas sobre processo e precisão</li>
+            <li>Prefere informações por escrito</li>
+            <li>Cauteloso com decisões; quer dados antes de agir</li>
+            <li>Pode parecer distante ou excessivamente crítico</li>
+            <li>Padrão elevado; raro em elogios públicos</li>
+          </ul>
+        </div>
+        <div class="outros-card f-i">
+          <div class="outros-card-head">
+            <span class="outros-factor-badge" style="background:var(--i-bg);color:var(--i)">I</span>
+            <span class="outros-card-title">Influência</span>
+          </div>
+          <div class="outros-card-sub">Direto · Focado em pessoas</div>
+          <ul class="outros-signals">
+            <li>Expressivo, conta histórias, usa humor</li>
+            <li>Alta energia e entusiasmo contagiante</li>
+            <li>Busca aprovação e reconhecimento</li>
+            <li>Pode desviar do assunto facilmente</li>
+            <li>Conecta antes de trabalhar — precisa de rapport</li>
+          </ul>
+        </div>
+        <div class="outros-card f-s">
+          <div class="outros-card-head">
+            <span class="outros-factor-badge" style="background:var(--s-bg);color:var(--s)">S</span>
+            <span class="outros-card-title">Estabilidade</span>
+          </div>
+          <div class="outros-card-sub">Indireto · Focado em pessoas</div>
+          <ul class="outros-signals">
+            <li>Escuta mais do que fala; ritmo pausado</li>
+            <li>Perguntas sobre impacto nas pessoas</li>
+            <li>Cuidadoso com mudanças; prefere constância</li>
+            <li>Leal e consistente; cumpre compromissos</li>
+            <li>Evita confrontos diretos — discordância surge indiretamente</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tensões personalizadas por perfil -->
+      <div class="outros-section-head">Tensões mais frequentes com seu perfil</div>
+      <p style="font-size:12.5px;color:var(--text3);margin-bottom:4px;line-height:1.6">Com base no seu perfil predominante — o que tende a gerar atrito e como navegar cada interação.</p>
+      <div class="tensao-grid" id="rOutrosTensoes"></div>
+    </div>
+
+    <!-- 15. Mapa de Palavras -->
+    <div class="rcard resp-blur" id="rcPalavras">
+      <div class="rcard-title">Mapa de Palavras</div>
+      <p style="font-size:13.5px;color:var(--text2);line-height:1.75;margin-bottom:20px">O vocabulário que usamos molda como somos percebidos — e como percebemos os outros. Palavras associadas ao nosso estilo natural tendem a nos energizar e nos parecem diretas; palavras de estilos opostos podem soar estranhas ou até gerar resistência instintiva. Conhecer esse repertório ajuda a ampliar o alcance da comunicação.</p>
+      <div class="palavras-section">
+        <div class="palavras-section-label">Vocabulário que tende a ressoar com seu estilo</div>
+        <div class="palavras-cloud" id="rPalavrasRessoa"></div>
+        <p class="palavras-note">Palavras maiores representam o vocabulário mais característico do perfil primário; as menores, do perfil secundário (quando aplicável).</p>
+      </div>
+      <div class="palavras-section" style="margin-bottom:0">
+        <div class="palavras-section-label">Vocabulário que pode gerar estranhamento ou resistência</div>
+        <div class="palavras-cloud" id="rPalavrasAtrito"></div>
+        <p class="palavras-note">Termos associados a estilos opostos. Não são negativos em si — compreendê-los ajuda a entender como outros pensam e a ampliar o repertório de comunicação.</p>
+      </div>
+    </div>
+
     <!-- Anotações do Aplicador -->
     <div class="notes-card applicator-only" id="notesCard">
       <div class="notes-title">Anotações do Aplicador</div>
@@ -2846,29 +2894,40 @@ textarea.notes-area::placeholder { color: var(--text3); }
 
     <div class="r-actions">
       <button class="btn btn-prim" style="font-size:13px;padding:10px 22px" onclick="window.print()">⬇ Exportar PDF</button>
+      <button class="btn btn-sec applicator-only" style="font-size:13px;padding:10px 22px" onclick="exportData()">{ } Exportar dados</button>
       <button class="btn btn-sec applicator-only" onclick="restart()">Nova avaliação</button>
     </div>
 
     <!-- Acesso discreto ao modo Aplicador (visível apenas no modo Respondente) -->
     <button class="apl-access-btn" onclick="openPinModal()">🔐 Acesso do aplicador</button>
 
-    <!-- CTA final — dentro do relatório, antes do botão aplicador -->
-    <div class="sched-banner" style="margin-top:28px">
-      <div class="sched-banner-text">
-        <strong>📅 Agende sua devolutiva</strong>
-        Entenda seu perfil com profundidade em uma sessão com William Gutierrez.
-      </div>
-      <button class="sched-banner-btn" onclick="openScheduleModal()">Agendar →</button>
-    </div>
-
   </div><!-- /results -->
 
-  <!-- Barra flutuante fixa no rodapé — aparece quando o relatório está visível -->
-  <div class="float-sched-bar" id="floatSchedBar">
-    <button onclick="openScheduleModal()">📅 Agendar minha devolutiva com William Gutierrez</button>
-  </div>
-
 </div><!-- /wrap -->
+
+<!-- Modal de Exportação de Dados -->
+<div class="export-overlay" id="exportOverlay" onclick="if(event.target===this)closeExportModal()">
+  <div class="export-modal">
+    <div class="export-head">
+      <div>
+        <div class="export-head-title">Exportar Dados Estruturados</div>
+        <div class="export-head-sub">Selecione o formato e copie o conteúdo</div>
+      </div>
+      <button class="export-close" onclick="closeExportModal()" title="Fechar">✕</button>
+    </div>
+    <div class="export-tabs">
+      <button class="export-tab active" id="tabJSON" onclick="switchExportTab('json')">JSON completo</button>
+      <button class="export-tab" id="tabCSV" onclick="switchExportTab('csv')">CSV (linha)</button>
+    </div>
+    <div class="export-body">
+      <textarea class="export-textarea" id="exportTextarea" readonly spellcheck="false"></textarea>
+    </div>
+    <div class="export-foot">
+      <span class="export-foot-note">JSON recomendado para integrações e análises detalhadas.<br>CSV para consolidar múltiplos respondentes em planilha.</span>
+      <button class="btn btn-prim export-copy-btn" onclick="copyExportData()">Copiar</button>
+    </div>
+  </div>
+</div>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────────
@@ -2881,18 +2940,18 @@ const BLOCKS = [
   [{w:'Competitivo',f:'D'},{w:'Cooperativo',f:'S'},{w:'Expressivo',f:'I'},{w:'Criterioso',f:'C'}],
   [{w:'Animado',f:'I'},{w:'Desafiador',f:'D'},{w:'Metódico',f:'C'},{w:'Compreensivo',f:'S'}],
   [{w:'Rigoroso',f:'C'},{w:'Carismático',f:'I'},{w:'Firme',f:'D'},{w:'Gentil',f:'S'}],
-  [{w:'Consistente',f:'S'},{w:'Dominante',f:'D'},{w:'Espontâneo',f:'I'},{w:'Detalhista',f:'C'}],
-  [{w:'Enérgico',f:'D'},{w:'Cauteloso',f:'C'},{w:'Previsível',f:'S'},{w:'Influente',f:'I'}],
+  [{w:'Consistente',f:'S'},{w:'Decisivo',f:'D'},{w:'Espontâneo',f:'I'},{w:'Detalhista',f:'C'}],
+  [{w:'Enérgico',f:'D'},{w:'Cauteloso',f:'C'},{w:'Constante',f:'S'},{w:'Influente',f:'I'}],
   [{w:'Persuasivo',f:'I'},{w:'Tolerante',f:'S'},{w:'Assertivo',f:'D'},{w:'Lógico',f:'C'}],
   [{w:'Arrojado',f:'D'},{w:'Dinâmico',f:'I'},{w:'Disciplinado',f:'C'},{w:'Harmonioso',f:'S'}],
   [{w:'Dedicado',f:'S'},{w:'Iniciador',f:'D'},{w:'Organizado',f:'C'},{w:'Popular',f:'I'}],
-  [{w:'Falante',f:'I'},{w:'Planejado',f:'C'},{w:'Rápido',f:'D'},{w:'Tranquilo',f:'S'}],
+  [{w:'Articulado',f:'I'},{w:'Planejado',f:'C'},{w:'Rápido',f:'D'},{w:'Tranquilo',f:'S'}],
   [{w:'Corajoso',f:'D'},{w:'Pacífico',f:'S'},{w:'Minucioso',f:'C'},{w:'Motivador',f:'I'}],
   [{w:'Estruturado',f:'C'},{w:'Eficiente',f:'D'},{w:'Equilibrado',f:'S'},{w:'Criativo',f:'I'}],
   [{w:'Entusiasta',f:'I'},{w:'Moderado',f:'S'},{w:'Prático',f:'D'},{w:'Precavido',f:'C'}],
   [{w:'Determinado',f:'D'},{w:'Racional',f:'C'},{w:'Atencioso',f:'S'},{w:'Inspirador',f:'I'}],
   [{w:'Confiável',f:'S'},{w:'Extrovertido',f:'I'},{w:'Empreendedor',f:'D'},{w:'Perfeccionista',f:'C'}],
-  [{w:'Consciencioso',f:'C'},{w:'Resolutivo',f:'D'},{w:'Empolgante',f:'I'},{w:'Apoiador',f:'S'}],
+  [{w:'Criterioso',f:'C'},{w:'Resolutivo',f:'D'},{w:'Empolgante',f:'I'},{w:'Apoiador',f:'S'}],
   [{w:'Relacionável',f:'I'},{w:'Objetivo',f:'D'},{w:'Empático',f:'S'},{w:'Exato',f:'C'}],
   [{w:'Acolhedor',f:'S'},{w:'Meticuloso',f:'C'},{w:'Independente',f:'D'},{w:'Animador',f:'I'}],
   [{w:'Audacioso',f:'D'},{w:'Interativo',f:'I'},{w:'Correto',f:'C'},{w:'Solidário',f:'S'}],
@@ -2907,7 +2966,7 @@ const EMAIL_PUBLIC_KEY  = 'jlYLPHYy0QMdlU4hi';      // Account → API Keys
 const EMAIL_SERVICE_ID  = 'service_eqohjhg';        // Email Services → Service ID
 const EMAIL_TEMPLATE_ID = 'template_vwiye9r';        // Email Templates → Template ID
 const APPLICATOR_EMAIL     = 'williamgutierrez.psicologo@gmail.com';
-const APPLICATOR_PIN       = '2305'; // ← altere para o PIN desejado
+const APPLICATOR_PIN       = '1234'; // ← altere para o PIN desejado
 const APPLICATOR_WHATSAPP  = '5519998585655'; // WhatsApp do aplicador
 
 const FACTORS = [
@@ -3226,20 +3285,6 @@ function submit() {
   clearProgress();
 
   const scores = calcScores();
-
-  // ── Gerar URL do relatório (dados codificados em base64) ──────────────────
-  try {
-    const _pn = document.getElementById('pName')?.value?.trim()     || '';
-    const _pe = document.getElementById('pEmail')?.value?.trim()    || '';
-    const _pw = document.getElementById('pWhatsapp')?.value?.trim() || '';
-    const _pdEl = document.getElementById('pDate');
-    const _pd = _pdEl?.dataset?.iso || _pdEl?.value || '';
-    const _payload = JSON.stringify({ n:_pn, e:_pe, w:_pw, d:_pd,
-                                      m:scores.mais, l:scores.menos, z:scores.meio });
-    window._reportUrl = location.origin + location.pathname
-      + '?r=' + btoa(unescape(encodeURIComponent(_payload)));
-  } catch(e) { window._reportUrl = ''; }
-
   renderResults(scores);
 
   // Show completion screen first; results shown after user clicks "Ver meu resumo"
@@ -3262,9 +3307,6 @@ function showResults() {
   setMode('resp'); // Respondent always starts in resp mode
   resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   setTimeout(() => animateBars(), 120);
-  // Show floating schedule bar
-  const floatBar = document.getElementById('floatSchedBar');
-  if (floatBar) floatBar.classList.add('visible');
 }
 
 // ── SCORING ───────────────────────────────────────────────────────────────────
@@ -4194,9 +4236,9 @@ function renderGraph3Narrative(s, diff) {
   let levelKey, levelLabel, levelClass;
   if (absMax <= 2) {
     levelKey = 'consistent'; levelLabel = 'Consistente'; levelClass = 'int-low';
-  } else if (absMax <= 5) {
+  } else if (absMax <= 3) {
     levelKey = 'leve';       levelLabel = 'Leve';        levelClass = 'int-mod';
-  } else if (absMax <= 8) {
+  } else if (absMax <= 5) {
     levelKey = 'moderada';   levelLabel = 'Moderada';    levelClass = 'int-high';
   } else {
     levelKey = 'intensa';    levelLabel = 'Intensa';     levelClass = 'int-vhigh';
@@ -4260,7 +4302,143 @@ function renderGraph3Narrative(s, diff) {
     html += `<div class="intens-addendum">Neste perfil, foram identificados apenas fatores de moderação/supressão. Isso pode indicar que o ambiente exige contenção em certas dimensões naturais, sem amplificar necessariamente outras de forma expressiva.</div>`;
   }
 
+  // Reflexão para devolutiva (moderada ou intensa)
+  if (levelKey === 'moderada' || levelKey === 'intensa') {
+    html += `<div class="g3-reflexao">
+      <span class="g3-ref-label">💬 Reflexão para a devolutiva</span>
+      Em que medida o contexto atual exige esses ajustes? A pessoa se sente confortável nessa adaptação, ou percebe desgaste ao sustentá-la? Qual seria o custo energético de manter esse padrão por períodos prolongados?
+    </div>`;
+  }
+
   el.innerHTML = html;
+}
+
+// ── Compreensão dos Outros ────────────────────────────────────────────────────
+const OUTROS_TENSOES = {
+  D: [
+    { com:'D', title:'Com outro estilo D',
+      tensao:'A interação entre dois perfis D pode gerar disputa de controle. Ambos tendem a querer conduzir, decidir e avançar rapidamente — o que cria impasses e clima de competição mesmo sem intenção deliberada.',
+      tip:'Defina papéis e responsabilidades com clareza desde o início. Reconheça a competência do outro sem ceder o campo inteiro. Reuniões diretas, com agenda clara e tempo limitado, funcionam bem entre dois D.' },
+    { com:'I', title:'Com o estilo I',
+      tensao:'O I pode parecer pouco focado ou demorar demais em conversas sociais. O D pode ser percebido como frio ou indelicado ao cortar histórias e ir direto ao ponto sem conexão prévia.',
+      tip:'Reserve alguns minutos de conexão genuína antes de entrar no tema. Valorize a energia do I — ele engaja melhor quando sente que a relação importa. Evite interromper ou despachar rapidamente.' },
+    { com:'S', title:'Com o estilo S',
+      tensao:'O ritmo do S pode parecer lentidão para o D. Pressionar por respostas rápidas gera desconforto no S e, frequentemente, concordância aparente sem alinhamento real.',
+      tip:'Desacelere. Antecipe mudanças com prazo maior do que o necessário. Mostre apreço pelo trabalho consistente do S — ele corresponde bem quando sente segurança e reconhecimento.' },
+    { com:'C', title:'Com o estilo C',
+      tensao:'O C tende a pedir mais dados antes de decidir — o que o D interpreta como obstáculo ou insegurança. O C pode perceber o D como impulsivo e arriscado.',
+      tip:'Forneça contexto e critérios de decisão com antecedência. Quando precisar de agilidade, explicite o prazo e os riscos — o C tende a cooperar mais quando entende o raciocínio por trás da urgência.' }
+  ],
+  I: [
+    { com:'D', title:'Com o estilo D',
+      tensao:'O D pode cortar histórias e ir direto ao ponto, o que o I interpreta como rejeição ou falta de interesse. O D pode achar que o I fala demais e entrega de menos.',
+      tip:'Com o D, vá mais rápido ao essencial. Comunique resultados e benefícios primeiro, detalhes depois. Mostre que você tem foco — o D se alinha quando percebe objetividade.' },
+    { com:'I', title:'Com outro estilo I',
+      tensao:'Dois perfis I podem ter muito entusiasmo e poucas entregas. A conversa flui bem, mas responsabilidades podem ficar difusas e prazos podem escorregar entre a animação.',
+      tip:'Defina quem faz o quê, quando e como. Use o entusiasmo compartilhado como combustível, mas ancore em compromissos concretos. Cheque o progresso real, não apenas a animação.' },
+    { com:'S', title:'Com o estilo S',
+      tensao:'O I pode parecer agitado ou imprevisível para o S. A alta energia e as mudanças frequentes de direção do I podem gerar ansiedade em quem valoriza constância e previsibilidade.',
+      tip:'Avise com antecedência sobre mudanças. Dê ao S tempo para processar antes de pedir uma resposta. A consistência do S é um ativo — trate-a com respeito, não como lentidão.' },
+    { com:'C', title:'Com o estilo C',
+      tensao:'O C pode parecer frio, crítico ou sem entusiasmo. O I pode ser percebido como pouco rigoroso ou superficial. A distância emocional do C é frequentemente lida como rejeição.',
+      tip:'Com o C, invista em dados e precisão. Prepare-se para perguntas difíceis sobre qualidade e processo. O C não rejeita você — só precisa de evidências antes de confiar plenamente.' }
+  ],
+  S: [
+    { com:'D', title:'Com o estilo D',
+      tensao:'O D pode parecer urgente demais, invasivo ou pouco sensível. A pressão por respostas rápidas pode levar o S a concordar externamente sem estar alinhado de fato.',
+      tip:'Comunique-se proativamente com o D — antecipe o que está fazendo. Se precisar de tempo, diga quanto você precisa. O D respeita quem entrega com consistência; mostre isso.' },
+    { com:'I', title:'Com o estilo I',
+      tensao:'A alta energia e as mudanças frequentes do I podem ser desgastantes. O I pode não perceber quando está sobrecarregando com novidades, interrupções e mudanças de plano.',
+      tip:'Comunique seus limites de forma gentil e direta. O I responde bem ao feedback positivo — comece reconhecendo o que funciona antes de pedir ajustes. Peça previsibilidade quando precisar.' },
+    { com:'S', title:'Com outro estilo S',
+      tensao:'Dois perfis S podem evitar conflitos a ponto de não tomar decisões difíceis. A harmonia pode mascarar problemas que precisariam ser confrontados antes de crescer.',
+      tip:'Crie acordos explícitos sobre quem decide quando não há consenso. O desconforto temporário de um conflito produtivo é menor que o custo de decisões adiadas indefinidamente.' },
+    { com:'C', title:'Com o estilo C',
+      tensao:'O padrão elevado do C pode parecer crítica pessoal para o S. Comentários técnicos sobre o trabalho podem ser sentidos como julgamento de quem a pessoa é, não do que produziu.',
+      tip:'Separe o feedback sobre o trabalho do feedback sobre você. O C busca qualidade, não ferimentos. Quando fizer perguntas detalhadas, interprete como cuidado com o processo, não desconfiança.' }
+  ],
+  C: [
+    { com:'D', title:'Com o estilo D',
+      tensao:'O D tende a decidir antes que o C tenha analisado o suficiente. O C pode ser percebido como lento, excessivamente cauteloso ou obstáculo para a ação.',
+      tip:'Aprenda a apresentar resumos concisos: pontos principais primeiro, detalhes sob demanda. Defina sua própria janela de análise — e cumpra-a. O D confia em quem pensa e age.' },
+    { com:'I', title:'Com o estilo I',
+      tensao:'A informalidade e a falta de estrutura do I podem frustrar o C. O I pode sentir as correções ou questionamentos do C como frieza ou crítica desnecessária.',
+      tip:'Comece pela contribuição positiva antes de apontar o que falta. O I precisa de conexão antes de crítica. Reconheça a criatividade e o entusiasmo — eles têm valor, mesmo sem estrutura imediata.' },
+    { com:'S', title:'Com o estilo S',
+      tensao:'C e S costumam trabalhar bem juntos — ambos são cuidadosos e orientados ao processo. A tensão surge quando o C aplica padrões elevados de forma que o S interpreta como pessoal.',
+      tip:'Enquadre o seu rigor como cuidado com o trabalho, não com o desempenho da pessoa. O S responde bem quando sente segurança; valorize a estabilidade e lealdade que ele traz.' },
+    { com:'C', title:'Com outro estilo C',
+      tensao:'Dois perfis C podem entrar em paralisia analítica. Muita verificação, pouca decisão. O padrão elevado de ambos pode gerar impasse quando os critérios divergem sem prazo definido.',
+      tip:'Estabeleça antecipadamente o critério de decisão e o prazo para análise. Quando não houver consenso perfeito, um dos dois precisa aceitar a responsabilidade de decidir com as informações disponíveis.' }
+  ]
+};
+
+function renderOutros(prof) {
+  const el = document.getElementById('rOutrosTensoes');
+  if (!el) return;
+  const primary = prof.primary;
+  const tensoes = OUTROS_TENSOES[primary];
+  if (!tensoes) return;
+  const F_BG    = { D:'var(--d-bg)', I:'var(--i-bg)', S:'var(--s-bg)', C:'var(--c-bg)' };
+  const F_COLOR = { D:'var(--d)',    I:'var(--i)',    S:'var(--s)',    C:'var(--c)'    };
+  let html = '';
+  tensoes.forEach(t => {
+    html += `<div class="tensao-card">
+      <div class="tensao-header">
+        <span class="tensao-badge" style="background:${F_BG[t.com]};color:${F_COLOR[t.com]}">${t.com}</span>
+        <span class="tensao-title">${t.title}</span>
+      </div>
+      <div class="tensao-tensao">${t.tensao}</div>
+      <div class="tensao-tip"><span class="tensao-tip-label">💡 Estratégia</span>${t.tip}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ── Mapa de Palavras ──────────────────────────────────────────────────────────
+const PALAVRAS = {
+  D: ['Resultado','Decisão','Desafio','Ação','Objetivo','Eficiência','Controle','Liderança','Meta','Impacto','Urgência','Competição','Direto','Velocidade','Risco'],
+  I: ['Entusiasmo','Inspiração','Conexão','Energia','Reconhecimento','Influência','Criatividade','Motivação','Visibilidade','Otimismo','Expressividade','Colaboração','Relacionamento','Espontaneidade','Diversão'],
+  S: ['Harmonia','Confiança','Lealdade','Consistência','Apoio','Segurança','Paciência','Cooperação','Estabilidade','Compromisso','Cuidado','Equipe','Constância','Fidelidade','Suporte'],
+  C: ['Precisão','Qualidade','Análise','Exatidão','Sistema','Rigor','Evidência','Metodologia','Critério','Verificação','Acurácia','Detalhe','Padrão','Processo','Conformidade']
+};
+const PALAVRAS_ATRITO = {
+  D: { f:'S', words:['Paciência','Consenso','Cautela','Harmonia','Espera','Concordância','Lentidão','Constância'] },
+  I: { f:'C', words:['Formalidade','Protocolo','Verificação','Precisão','Frieza','Burocracia','Restrição','Detalhamento'] },
+  S: { f:'D', words:['Urgência','Confronto','Imposição','Competição','Risco','Pressão','Imediatismo','Decisão unilateral'] },
+  C: { f:'I', words:['Improviso','Intuição','Informalidade','Espontaneidade','Empolgação','Imprecisão','Desordem','Superficialidade'] }
+};
+function renderPalavras(prof) {
+  const ressoaEl = document.getElementById('rPalavrasRessoa');
+  const atritoEl = document.getElementById('rPalavrasAtrito');
+  if (!ressoaEl || !atritoEl) return;
+  const primary   = prof.primary;
+  const secondary = prof.key.length > 1 ? prof.secondary : null;
+  // Ressoa
+  let ressoaHtml = '';
+  (PALAVRAS[primary] || []).forEach((w, i) => {
+    const sz = i < 3 ? 'xl' : i < 7 ? 'lg' : i < 11 ? 'md' : 'sm';
+    ressoaHtml += `<span class="p-word sz-${sz} f-${primary.toLowerCase()}">${w}</span>`;
+  });
+  if (secondary) {
+    (PALAVRAS[secondary] || []).slice(0, 7).forEach(w => {
+      ressoaHtml += `<span class="p-word sz-xs f-${secondary.toLowerCase()}">${w}</span>`;
+    });
+  }
+  ressoaEl.innerHTML = ressoaHtml;
+  // Atrito
+  let atritoHtml = '';
+  const ap = PALAVRAS_ATRITO[primary];
+  if (ap) ap.words.forEach(w => {
+    atritoHtml += `<span class="p-word sz-sm f-${ap.f.toLowerCase()} muted">${w}</span>`;
+  });
+  if (secondary) {
+    const as2 = PALAVRAS_ATRITO[secondary];
+    if (as2) as2.words.slice(0, 5).forEach(w => {
+      atritoHtml += `<span class="p-word sz-xs f-${as2.f.toLowerCase()} muted">${w}</span>`;
+    });
+  }
+  atritoEl.innerHTML = atritoHtml;
 }
 
 // ── Mapa de Quadrante Comportamental ─────────────────────────────────────────
@@ -4303,10 +4481,15 @@ function renderQuadrant(s, natural) {
         <line class="qd-axis" x1="${CX}" y1="${Q}"    x2="${CX}" y2="${Q+QS*2}"/>
         <line class="qd-axis" x1="${Q}"  y1="${CY}"   x2="${Q+QS*2}" y2="${CY}"/>
         <!-- Factor letter labels (corners, slightly inset) -->
-        <text class="qd-txt qd-lbl-d" x="${Q+8}"         y="${Q+18}"         font-size="13">D</text>
-        <text class="qd-txt qd-lbl-i" x="${Q+QS*2-8}"    y="${Q+18}"         font-size="13" text-anchor="end">I</text>
-        <text class="qd-txt qd-lbl-c" x="${Q+8}"         y="${Q+QS*2-7}"     font-size="13">C</text>
-        <text class="qd-txt qd-lbl-s" x="${Q+QS*2-8}"    y="${Q+QS*2-7}"     font-size="13" text-anchor="end">S</text>
+        <text class="qd-txt qd-lbl-d" x="${Q+8}"         y="${Q+18}"         font-size="13" font-weight="700">D</text>
+        <text class="qd-txt qd-lbl-i" x="${Q+QS*2-8}"    y="${Q+18}"         font-size="13" font-weight="700" text-anchor="end">I</text>
+        <text class="qd-txt qd-lbl-c" x="${Q+8}"         y="${Q+QS*2-7}"     font-size="13" font-weight="700">C</text>
+        <text class="qd-txt qd-lbl-s" x="${Q+QS*2-8}"    y="${Q+QS*2-7}"     font-size="13" font-weight="700" text-anchor="end">S</text>
+        <!-- Zone sub-labels -->
+        <text class="qd-zone-name qd-lbl-d" x="${Q+8}"         y="${Q+32}"         font-size="8" text-anchor="start">Dominante</text>
+        <text class="qd-zone-name qd-lbl-i" x="${Q+QS*2-8}"    y="${Q+32}"         font-size="8" text-anchor="end">Influente</text>
+        <text class="qd-zone-name qd-lbl-c" x="${Q+8}"         y="${Q+QS*2-18}"    font-size="8" text-anchor="start">Conforme</text>
+        <text class="qd-zone-name qd-lbl-s" x="${Q+QS*2-8}"    y="${Q+QS*2-18}"    font-size="8" text-anchor="end">Estável</text>
         <!-- Axis direction labels -->
         <text class="qd-txt" x="${CX}"       y="${Q-10}"        font-size="9.5" text-anchor="middle">Ativo</text>
         <text class="qd-txt" x="${CX}"       y="${Q+QS*2+19}"   font-size="9.5" text-anchor="middle">Passivo</text>
@@ -4332,15 +4515,27 @@ function renderQuadrant(s, natural) {
 function calcConsistencySignals(s, diff, elapsedSec) {
   const signals = [];
 
-  // Sinal 0 (ALERTA — vermelho): tempo de resposta < 2 min → preenchimento muito rápido
-  if (elapsedSec !== null && elapsedSec < 120) {
+  // Sinal 0 (ATENÇÃO — amarelo): tempo de resposta < 3 min → preenchimento muito rápido
+  if (elapsedSec !== null && elapsedSec < 180) {
     const mins = Math.floor(elapsedSec / 60);
     const secs = elapsedSec % 60;
     const timeStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
     signals.push({
-      level: 'red',
+      level: 'yel',
       title: 'Tempo de resposta muito baixo',
-      text: `A avaliação foi concluída em ${timeStr}. Responder 24 grupos em menos de 2 minutos (média inferior a 5 segundos por grupo) pode indicar preenchimento automático, sem leitura adequada das palavras. Recomenda-se reaplicação ou entrevista de devolutiva.`
+      text: `A avaliação foi concluída em ${timeStr}. Responder 24 grupos em menos de 3 minutos (média inferior a 7,5 segundos por grupo) pode indicar leitura superficial ou preenchimento automático. Recomenda-se verificar com o avaliado antes de interpretar os resultados.`
+    });
+  }
+
+  // Sinal 0b (ATENÇÃO — amarelo): tempo de resposta > 25 min → preenchimento muito lento
+  if (elapsedSec !== null && elapsedSec > 1500) {
+    const mins = Math.floor(elapsedSec / 60);
+    const secs = elapsedSec % 60;
+    const timeStr = `${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
+    signals.push({
+      level: 'yel',
+      title: 'Tempo de resposta muito elevado',
+      text: `A avaliação foi concluída em ${timeStr}. Tempo superior a 25 minutos pode indicar interrupções, dificuldade de compreensão das instruções ou resposta muito analisada, o que pode influenciar os resultados. Considere verificar as condições de aplicação.`
     });
   }
 
@@ -4393,7 +4588,7 @@ function renderConsistencyCard(signals, elapsedSec) {
     const mins = Math.floor(elapsedSec / 60);
     const secs = elapsedSec % 60;
     const timeStr = mins > 0 ? `${mins}m ${secs < 10 ? '0' : ''}${secs}s` : `${secs}s`;
-    const timeColor = elapsedSec < 120 ? 'var(--d)' : elapsedSec < 180 ? 'var(--i)' : 'var(--text3)';
+    const timeColor = elapsedSec < 180 ? 'var(--i)' : elapsedSec > 1500 ? 'var(--i)' : 'var(--text3)';
     timeBadge = `<span style="font-size:11px;font-weight:600;color:${timeColor};background:var(--surface2);border-radius:20px;padding:3px 10px;white-space:nowrap;">⏱ ${timeStr}</span>`;
   }
 
@@ -4571,6 +4766,125 @@ function copyNotes() {
   }
 }
 
+// ── EXPORTAÇÃO ESTRUTURADA DE DADOS ──────────────────────────
+function exportData() {
+  const s = window._scores;
+  if (!s) { alert('Nenhum resultado disponível para exportar.'); return; }
+  const prof      = window._prof;
+  const natural   = window._natural;
+  const diff      = window._diff;
+  const profName  = window._profName || '—';
+  const IPS       = window._IPS;
+  const IIA       = window._IIA;
+  const ITA       = window._ITA;
+  const TCM       = window._TCM;
+  const elapsed   = window._elapsedSec;
+
+  const aemTotal  = s.menos.D + s.menos.I + s.menos.S + s.menos.C;
+  const aemClass_ = v => v > 20 ? 'Elevada' : v > 14 ? 'Moderada-alta' : v > 8 ? 'Moderada' : 'Baixa';
+
+  const consistSignals = calcConsistencySignals(s, diff, elapsed);
+  const hasRed = consistSignals.some(sg => sg.level === 'red');
+  const hasYel = consistSignals.some(sg => sg.level === 'yel');
+  const consistLevel = hasRed ? 'Alerta' : hasYel ? 'Atenção' : 'Adequada';
+
+  const data = {
+    ferramenta: 'DISC Assessment',
+    exportacao: new Date().toISOString(),
+    respondente: {
+      nome:       window._pName      || '—',
+      data:       window._pDate      || '—',
+      finalidade: window._pFinalidade|| '—'
+    },
+    perfil: {
+      chave:      prof.key,
+      primario:   prof.primary,
+      secundario: prof.secondary,
+      nome:       profName
+    },
+    scores: {
+      adaptado:  { D: s.mais.D,  I: s.mais.I,  S: s.mais.S,  C: s.mais.C  },
+      natural:   { D: natural.D, I: natural.I, S: natural.S, C: natural.C },
+      diferenca: { D: diff.D,    I: diff.I,    S: diff.S,    C: diff.C    },
+      menos:     { D: s.menos.D, I: s.menos.I, S: s.menos.S, C: s.menos.C }
+    },
+    indices: {
+      IPS,
+      IIA,
+      ITA,
+      TCM_min: TCM
+    },
+    aem: {
+      por_fator: { D: s.menos.D, I: s.menos.I, S: s.menos.S, C: s.menos.C },
+      total: aemTotal,
+      classificacao: aemClass_(aemTotal)
+    },
+    tendencias: TENDENCIES.map(t => ({
+      nome:     t.name,
+      natural:  tendScore(s, t.fNat, true),
+      adaptado: tendScore(s, t.fAdp, false)
+    })),
+    consistencia: {
+      nivel:  consistLevel,
+      sinais: consistSignals.map(sg => sg.title)
+    }
+  };
+
+  window._exportJSON = JSON.stringify(data, null, 2);
+
+  // CSV — cabeçalho + linha de valores
+  const cols = [
+    ['nome',             data.respondente.nome],
+    ['data',             data.respondente.data],
+    ['finalidade',       data.respondente.finalidade],
+    ['perfil_chave',     data.perfil.chave],
+    ['perfil_primario',  data.perfil.primario],
+    ['perfil_secundario',data.perfil.secundario],
+    ['perfil_nome',      data.perfil.nome],
+    ['adp_D', s.mais.D], ['adp_I', s.mais.I], ['adp_S', s.mais.S], ['adp_C', s.mais.C],
+    ['nat_D', natural.D], ['nat_I', natural.I], ['nat_S', natural.S], ['nat_C', natural.C],
+    ['dif_D', diff.D],   ['dif_I', diff.I],   ['dif_S', diff.S],   ['dif_C', diff.C],
+    ['menos_D', s.menos.D], ['menos_I', s.menos.I], ['menos_S', s.menos.S], ['menos_C', s.menos.C],
+    ['IPS', IPS], ['IIA', IIA], ['ITA', ITA], ['TCM_min', TCM],
+    ['AEM_D', s.menos.D], ['AEM_I', s.menos.I], ['AEM_S', s.menos.S], ['AEM_C', s.menos.C], ['AEM_total', aemTotal],
+    ['consistencia', consistLevel]
+  ];
+  const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  window._exportCSV = cols.map(c => q(c[0])).join(',') + '\n' + cols.map(c => q(c[1])).join(',');
+
+  switchExportTab('json');
+  document.getElementById('exportOverlay').classList.add('open');
+}
+
+function closeExportModal() {
+  document.getElementById('exportOverlay').classList.remove('open');
+}
+
+function switchExportTab(tab) {
+  document.getElementById('tabJSON').classList.toggle('active', tab === 'json');
+  document.getElementById('tabCSV').classList.toggle('active',  tab === 'csv');
+  const ta = document.getElementById('exportTextarea');
+  if (ta) ta.value = tab === 'json' ? (window._exportJSON || '') : (window._exportCSV || '');
+  window._activeExportTab = tab;
+}
+
+function copyExportData() {
+  const ta  = document.getElementById('exportTextarea');
+  const btn = document.querySelector('.export-copy-btn');
+  if (!ta) return;
+  const original = btn ? btn.textContent : 'Copiar';
+  const confirm  = () => {
+    if (btn) { btn.textContent = 'Copiado ✓'; setTimeout(() => { if(btn) btn.textContent = original; }, 2000); }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ta.value).then(confirm).catch(() => { ta.select(); document.execCommand('copy'); confirm(); });
+  } else {
+    ta.select();
+    document.execCommand('copy');
+    confirm();
+  }
+}
+
 // ── SEND RESULTS BY EMAIL ────────────────────────────────────
 function showEmailToast() {
   const toast = document.getElementById('emailToast');
@@ -4579,8 +4893,7 @@ function showEmailToast() {
   setTimeout(() => toast.classList.remove('show'), 4000);
 }
 
-function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData, reportUrl) {
-  if (window._suppressEmail) return; // carregando de URL — não reenviar
+function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData) {
   if (typeof emailjs === 'undefined' || EMAIL_PUBLIC_KEY === 'SEU_PUBLIC_KEY') return;
 
   const colors = { D:'#C0392B', I:'#CC6000', S:'#228B5A', C:'#1F6FA8' };
@@ -4657,14 +4970,6 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
   const exemplosHTML = bullets(pData.carreira?.ambiente?.exemplos);
 
   // ── HTML do email ─────────────────────────────────────────
-  const reportBtnBlock = reportUrl ? `
-    <div style="text-align:center;margin-bottom:28px">
-      <a href="${reportUrl}" style="display:inline-block;background:#2B4C8C;color:#ffffff;font-family:Arial,sans-serif;font-weight:700;font-size:15px;padding:15px 36px;border-radius:8px;text-decoration:none;letter-spacing:.02em">
-        📊 Ver Relatório Completo
-      </a>
-      <div style="font-size:12px;color:#999;margin-top:10px">Clique para abrir o relatório com todos os gráficos e análises</div>
-    </div>` : '';
-
   const html = `<!DOCTYPE html><html><body style="margin:0;padding:20px;background:#f0f2f8;font-family:Arial,Helvetica,sans-serif">
   <div style="max-width:680px;margin:0 auto">
 
@@ -4674,9 +4979,6 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
       <div style="font-size:26px;font-weight:700;margin-bottom:4px">${name || '—'}</div>
       <div style="font-size:14px;opacity:.8">${dateFormatted}</div>
     </div>
-
-    <!-- Botão Ver Relatório -->
-    ${reportBtnBlock}
 
     <!-- Badge de perfil + contatos -->
     <div style="background:#edf0f8;border:1px solid #c8d3e8;border-top:none;padding:18px 30px 20px;border-radius:0 0 12px 12px;margin-bottom:20px">
@@ -4743,155 +5045,6 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
   });
 }
 
-// ── PERSONALIZATION HELPERS ───────────────────────────────────────────────────
-
-/**
- * buildDecisaoNote — appended to rDecisao
- * Reflects how concentrated the primary factor is and the decision style intensity.
- */
-function buildDecisaoNote(prof, s) {
-  const primary   = s.mais[prof.primary];
-  const secondary = prof.key.length > 1 ? s.mais[prof.secondary] : 0;
-  const gap       = primary - secondary;
-  const intLvl    = scoreIntensity(primary);
-
-  let lines = [];
-
-  // Gap — how clear-cut vs. mixed the decision style is
-  if (gap >= 6) {
-    lines.push(`Seu estilo de decisão tende a ser <strong>bastante definido e consistente</strong>: a marcante predominância do fator ${prof.primary} (${primary} pts) sobre os demais indica que você costuma adotar uma abordagem bem característica diante de escolhas, com pouca variação de acordo com o contexto.`);
-  } else if (gap >= 3) {
-    lines.push(`Seu estilo de decisão mostra <strong>inclinação clara pelo fator ${prof.primary}</strong>, mas a presença do fator ${prof.secondary || 'secundário'} (${secondary} pts) introduz uma nuance importante: em determinadas situações, você pode alternar entre abordagens ou buscar um equilíbrio entre velocidade e análise.`);
-  } else if (prof.key.length > 1) {
-    lines.push(`Seu estilo de decisão é <strong>marcadamente combinado</strong>: os fatores ${prof.primary} e ${prof.secondary} apresentam pontuações próximas (${primary} e ${secondary} pts), o que sugere que você tende a integrar diferentes abordagens dependendo do contexto — ora mais analítico, ora mais relacional, ora mais assertivo.`);
-  }
-
-  // Intensity modifier
-  if (intLvl === 'int-vhigh') {
-    lines.push(`A alta intensidade do fator principal (${primary} pts) indica que esse padrão de decisão tende a aparecer de forma bastante marcada no seu comportamento observável.`);
-  } else if (intLvl === 'int-vlow') {
-    lines.push(`A intensidade moderada do fator principal (${primary} pts) sugere que esse padrão pode ser menos evidente no dia a dia e mais dependente do contexto e das demandas do ambiente.`);
-  }
-
-  if (!lines.length) return '';
-  return `<div class="pers-note"><p>${lines.join('</p><p>')}</p></div>`;
-}
-
-/**
- * buildPressaoNote — prepended to rPressao
- * Uses AEM (totalMenos) and diff to contextualize stress behavior.
- */
-function buildPressaoNote(s, diff) {
-  const aem = s.menos.D + s.menos.I + s.menos.S + s.menos.C; // totalMenos
-
-  let lines = [];
-
-  // AEM — perceived environmental demands
-  if (aem >= 18) {
-    lines.push(`Você percebe o ambiente atual como <strong>altamente exigente</strong> (índice de adaptação: ${aem}/24): a pressão do contexto está sendo processada de forma intensa, o que tende a amplificar suas respostas comportamentais sob estresse.`);
-  } else if (aem >= 12) {
-    lines.push(`Você percebe o ambiente como <strong>moderadamente exigente</strong> (índice de adaptação: ${aem}/24), o que sugere um nível razoável de pressão contextual sendo processada no momento da avaliação.`);
-  } else {
-    lines.push(`O índice de adaptação ao ambiente é relativamente baixo (${aem}/24), sugerindo que você percebe o contexto atual como <strong>menos exigente ou mais confortável</strong> do que seria esperado em situações de alta demanda.`);
-  }
-
-  // Diff — adaptation cost
-  const totalDiff = Math.abs(diff.D) + Math.abs(diff.I) + Math.abs(diff.S) + Math.abs(diff.C);
-  if (totalDiff >= 12) {
-    lines.push(`O custo de adaptação entre seu perfil natural e o adaptado é <strong>elevado</strong> (variação total de ${totalDiff} pts entre os perfis): manter esse nível de adaptação por períodos prolongados pode gerar maior desgaste e reduzir a resiliência sob pressão.`);
-  } else if (totalDiff >= 6) {
-    lines.push(`Há uma adaptação moderada entre seu perfil natural e adaptado (variação de ${totalDiff} pts), indicando algum esforço comportamental para atender às demandas do contexto atual.`);
-  } else {
-    lines.push(`A diferença entre seu perfil natural e adaptado é pequena (${totalDiff} pts), sugerindo que você está operando de forma próxima ao seu padrão mais espontâneo — o que tende a favorecer a estabilidade emocional sob pressão.`);
-  }
-
-  return `<div class="pers-note"><p>${lines.join('</p><p>')}</p></div>`;
-}
-
-/**
- * buildMelhoriaNote — prepended to rMelhoria (desenvolvimento)
- * Highlights per-factor adaptation costs above threshold.
- */
-function buildMelhoriaNote(diff) {
-  const factors  = ['D','I','S','C'];
-  const labels   = { D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade' };
-  const highCost = factors.filter(f => Math.abs(diff[f]) >= 4);
-
-  if (!highCost.length) return '';
-
-  const items = highCost.map(f => {
-    const delta = diff[f];
-    const dir   = delta > 0 ? `aumentando ${delta} pts acima` : `reduzindo ${Math.abs(delta)} pts abaixo`;
-    const tip   = delta > 0
-      ? `— o que pode gerar desgaste ao sustentar comportamentos mais intensos do que seu padrão natural`
-      : `— o que pode criar tensão ao suprimir comportamentos que são mais naturais para você`;
-    return `<strong>${labels[f]}</strong> (${dir} do seu padrão natural${tip})`;
-  });
-
-  return `<div class="pers-note pers-note-dev">
-    <div class="pers-note-title">Pontos de atenção no desenvolvimento</div>
-    <p>Os fatores com maior custo de adaptação no momento da avaliação são: ${items.join('; ')}. Esses são pontos que merecem atenção prioritária em seu processo de desenvolvimento comportamental.</p>
-  </div>`;
-}
-
-/**
- * buildAmbienteNote — appended to rAmbiente
- * Highlights divergence between natural and adapted profiles.
- */
-function buildAmbienteNote(prof, natural, diff) {
-  const p1     = prof.primary;
-  const natVal = natural[p1];
-  const adpVal = diff[p1] + natVal; // adapted = natural + diff
-  const delta  = diff[p1];
-
-  if (Math.abs(delta) < 3) return ''; // not worth calling out
-
-  let lines = [];
-
-  if (delta > 0) {
-    lines.push(`No ambiente atual, você tende a <strong>amplificar seu fator ${p1}</strong> (${natVal} pts natural → ~${adpVal} pts adaptado): o contexto parece demandar mais desse comportamento do que corresponde ao seu padrão espontâneo.`);
-    lines.push(`Isso pode ser funcional no curto prazo, mas ambientes que exijam essa amplificação de forma contínua tendem a gerar desgaste progressivo.`);
-  } else {
-    lines.push(`No ambiente atual, você tende a <strong>moderar seu fator ${p1}</strong> (${natVal} pts natural → ~${adpVal} pts adaptado): o contexto parece demandar um comportamento menos intenso nessa dimensão do que corresponde ao seu padrão espontâneo.`);
-    lines.push(`Essa supressão pode ser estratégica, mas quando prolongada costuma gerar um senso de inautenticidade ou tensão interna.`);
-  }
-
-  return `<div class="pers-note"><p>${lines.join('</p><p>')}</p></div>`;
-}
-
-/**
- * buildCarreiraNote — prepended to tendências section inside career card
- * Contextualizes career tendencies with intensity and natural/adapted gap.
- */
-function buildCarreiraNote(prof, s, natural, diff) {
-  const p1       = prof.primary;
-  const adapted  = s.mais[p1];
-  const nat      = natural[p1];
-  const delta    = diff[p1];
-  const intLvl   = scoreIntensity(adapted);
-  const labels   = { D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade' };
-
-  let lines = [];
-
-  // Intensity context for career
-  if (intLvl === 'int-vhigh') {
-    lines.push(`As tendências profissionais a seguir se expressam com <strong>alta intensidade</strong> no seu perfil adaptado: o fator ${labels[p1]} (${adapted} pts) está bastante proeminente, o que tende a tornar essas características muito visíveis no ambiente de trabalho.`);
-  } else if (intLvl === 'int-vlow') {
-    lines.push(`As tendências profissionais descritas podem se manifestar de forma <strong>mais sutil ou situacional</strong>, dado que o fator ${labels[p1]} (${adapted} pts) apresenta intensidade moderada no perfil atual.`);
-  }
-
-  // Natural vs adapted career gap
-  if (Math.abs(delta) >= 5) {
-    const dir = delta > 0 ? 'acima' : 'abaixo';
-    lines.push(`Vale observar que seu perfil <em>natural</em> no fator ${labels[p1]} é ${nat} pts — ${Math.abs(delta)} pts ${dir} do adaptado — o que indica que parte dessas tendências está sendo <strong>modulada pelo contexto atual</strong> e pode se expressar de forma diferente em ambientes com menos pressão ou mais alinhados ao seu padrão espontâneo.`);
-  }
-
-  if (!lines.length) return '';
-  return `<div class="pers-note" style="margin-bottom:16px"><p>${lines.join('</p><p>')}</p></div>`;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-
 function renderResults(s) {
   const name      = document.getElementById('pName').value.trim();
   const whatsapp  = document.getElementById('pWhatsapp').value.trim();
@@ -4900,9 +5053,15 @@ function renderResults(s) {
   const dateVal   = pDateEl.dataset.iso || pDateEl.value; // prefer ISO stored in dataset
   const d         = dateVal ? new Date(dateVal+'T12:00:00') : new Date();
 
+  const finalidade = (document.getElementById('pFinalidade')?.value || '').trim();
   document.getElementById('rName').textContent = name || '—';
   document.getElementById('rDate').textContent =
     d.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'});
+  const rFin = document.getElementById('rFinalidade');
+  if (rFin) {
+    if (finalidade) { rFin.textContent = 'Finalidade: ' + finalidade; rFin.style.display = 'block'; }
+    else            { rFin.style.display = 'none'; }
+  }
 
   // Profile
   const prof = getProfileKey(s);
@@ -4930,13 +5089,7 @@ function renderResults(s) {
   const addendumHTML = addendum
     ? `<p class="intens-addendum">${addendum}</p>`
     : '';
-  // Personalized greeting: inject first name before first narrative paragraph
-  const firstName = name ? name.trim().split(' ')[0] : '';
-  const greetHTML = firstName
-    ? `<p class="narr-greeting"><strong>${firstName}</strong>, veja a seguir o que seu perfil comportamental revela.</p>`
-    : '';
-  narDiv.innerHTML = greetHTML
-    + `<div class="intens-opening">${openingPara}</div>`
+  narDiv.innerHTML = `<div class="intens-opening">${openingPara}</div>`
     + selectedNar.map(p=>`<p>${p}</p>`).join('')
     + addendumHTML;
 
@@ -5055,7 +5208,7 @@ function renderResults(s) {
   const pf_p= Math.min(100, Math.round(s.mais[prof.primary]/MAX_REF*100));
   const ITA = Math.round((pf_p+IPS)/2);
   const IIA = Math.min(100, Math.round(Math.max(s.menos.D,s.menos.I,s.menos.S,s.menos.C)/6*60));
-  const TCM = Math.round((new Date()-window._startTime)/1000/60*10)/10;
+  const TCM = wizardStartTime ? Math.round((Date.now()-wizardStartTime)/1000/60*10)/10 : null;
 
   const idxBody = document.getElementById('idxBody');
   idxBody.innerHTML='';
@@ -5068,15 +5221,13 @@ function renderResults(s) {
     idxBody.innerHTML += `<tr><td>${row.n}</td><td><span class="idx-pill">${row.v}</span></td><td>${row.c}</td></tr>`;
   });
 
-  // Text sections — with personalization notes
-  document.getElementById('rAmbiente').innerHTML=
-    `<p>${pData.ambiente}</p>` + buildAmbienteNote(prof, natural, diff);
-  document.getElementById('rDecisao').innerHTML=
-    `<p>${pData.decisao}</p>` + buildDecisaoNote(prof, s);
+  // Text sections
+  document.getElementById('rAmbiente').innerHTML=`<p>${pData.ambiente}</p>`;
+  document.getElementById('rDecisao').innerHTML=`<p>${pData.decisao}</p>`;
 
   // Melhoria
   const melDiv = document.getElementById('rMelhoria');
-  melDiv.innerHTML = buildMelhoriaNote(diff); // prepend personalization note
+  melDiv.innerHTML='';
   (pData.melhoria||[]).forEach(blk=>{
     const fl=FACTORS.find(x=>x.key===blk.fator);
     melDiv.innerHTML+=`
@@ -5109,7 +5260,7 @@ function renderResults(s) {
 
   // Comportamento sob Pressão
   const pressaoDiv = document.getElementById('rPressao');
-  pressaoDiv.innerHTML = buildPressaoNote(s, diff); // personalization note first
+  pressaoDiv.innerHTML='';
   const pressao = pData.pressao || [];
   if (pressao.length) {
     pressao.forEach(blk=>{
@@ -5141,14 +5292,24 @@ function renderResults(s) {
   renderPctBars(s, natural);
 
   // Career sections
-  renderCarreira(pData, prof, s, natural, diff);
+  renderCarreira(pData);
 
-  window._scores=s; window._pName=name; window._pDate=dateVal;
+  // Compreensão dos outros (tensões por perfil)
+  renderOutros(prof);
+
+  // Mapa de Palavras
+  renderPalavras(prof);
+
+  window._scores=s; window._pName=name; window._pDate=dateVal; window._pFinalidade=finalidade;
   window._pWhatsapp=whatsapp; window._pEmail=email;
+  window._prof=prof; window._natural=natural; window._diff=diff;
+  window._IPS=IPS; window._IIA=IIA; window._ITA=ITA; window._TCM=TCM;
+  window._profName=profName;
+  window._elapsedSec = wizardStartTime ? Math.round((Date.now()-wizardStartTime)/1000) : null;
 
   // Envio automático por email ao aplicador
   const dateFormatted = document.getElementById('rDate').textContent;
-  sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData, window._reportUrl || '');
+  sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, natural, diff, pData);
 }
 
 // ── PROFILE GRAPHS (classic DISC line charts) ─────────────────────────────────
@@ -5339,17 +5500,14 @@ function renderPctBars(s, natural) {
     </div>`).join('')}</div>`;
 }
 
-function renderCarreira(pData, prof, s, natural, diff) {
+function renderCarreira(pData) {
   const car = pData.carreira;
 
   // Tendências de Atuação
   const tendDiv = document.getElementById('rCarreiraTend');
   if (tendDiv) {
     if (car && car.tendencias && car.tendencias.length) {
-      const carreiraNote = (prof && s && natural && diff)
-        ? buildCarreiraNote(prof, s, natural, diff)
-        : '';
-      tendDiv.innerHTML = carreiraNote + car.tendencias.map(t=>`
+      tendDiv.innerHTML = car.tendencias.map(t=>`
         <div class="tend-item">
           <div class="tend-icon">${t.icon||'💼'}</div>
           <div class="tend-body">
@@ -5415,7 +5573,7 @@ function buildBars(containerId, scoreObj) {
 }
 
 function animateBars() {
-  document.querySelectorAll('.bar-fill, .comp-fill, .diff-bar-fill, .tend-bar-nat, .tend-bar-adp').forEach(el=>{
+  document.querySelectorAll('.bar-fill, .comp-fill, .diff-bar-fill, .tend-bar-nat, .tend-bar-adp, .pct-fill').forEach(el=>{
     el.style.width = (el.dataset.pct||'0') + '%';
   });
 }
@@ -5439,6 +5597,7 @@ function saveProgress() {
       pEmail:       (document.getElementById('pEmail')    || {}).value || '',
       pDateIso:     (document.getElementById('pDate')?.dataset?.iso) || '',
       pDate:        (document.getElementById('pDate')     || {}).value || '',
+      pFinalidade:  (document.getElementById('pFinalidade')  || {}).value || '',
       lgpdConsent:  !!(document.getElementById('lgpdConsent')?.checked),
       currentBlock,
       savedAt:      Date.now()
@@ -5485,6 +5644,7 @@ function doRestore() {
   if (data.pName)        document.getElementById('pName').value        = data.pName;
   if (data.pWhatsapp)    document.getElementById('pWhatsapp').value    = data.pWhatsapp;
   if (data.pEmail)       document.getElementById('pEmail').value       = data.pEmail;
+  if (data.pFinalidade)  document.getElementById('pFinalidade').value    = data.pFinalidade;
   if (data.lgpdConsent)  document.getElementById('lgpdConsent').checked = true;
   // Date is always today — never restored from saved session (auto-set at page load)
 
@@ -5639,68 +5799,6 @@ checkSavedSession();
 (function initEmailJS() {
   if (typeof emailjs !== 'undefined' && EMAIL_PUBLIC_KEY !== 'SEU_PUBLIC_KEY') {
     emailjs.init({ publicKey: EMAIL_PUBLIC_KEY });
-  }
-})();
-
-// ── CARREGAR RELATÓRIO A PARTIR DA URL (?r=BASE64) ───────────────────────────
-function loadReportFromUrl(data) {
-  // Ocultar intro e formulário
-  ['intro','questionnaire','topBar'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  const comp = document.getElementById('completionScreen');
-  if (comp) comp.classList.remove('active');
-
-  // Preencher campos do formulário para que renderResults() leia corretamente
-  const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
-  setVal('pName',      data.n);
-  setVal('pEmail',     data.e);
-  setVal('pWhatsapp',  data.w);
-  const pDateEl = document.getElementById('pDate');
-  if (pDateEl && data.d) { pDateEl.value = data.d; pDateEl.dataset.iso = data.d; }
-
-  // Reconstruir objeto de pontuações
-  const s = { mais: data.m, menos: data.l, meio: data.z };
-
-  // Renderizar sem reenviar email
-  window._suppressEmail = true;
-  renderResults(s);
-  window._suppressEmail = false;
-
-  // Exibir resultados
-  const resultsEl = document.getElementById('results');
-  if (resultsEl) {
-    resultsEl.style.display = 'block';
-    setMode('resp');
-    resultsEl.scrollIntoView({ behavior: 'instant', block: 'start' });
-    setTimeout(() => { if (typeof animateBars === 'function') animateBars(); }, 120);
-  }
-
-  // Adicionar banner informativo no topo do relatório
-  const rHeader = document.getElementById('rName')?.closest('.res-header') || resultsEl?.firstElementChild;
-  const banner = document.createElement('div');
-  banner.style.cssText = 'background:#edf0f8;border:1px solid #c8d3e8;border-radius:8px;padding:12px 18px;margin-bottom:18px;font-size:13px;color:#2B4C8C;display:flex;align-items:center;gap:10px';
-  banner.innerHTML = '🔗 <span>Visualização do relatório via link direto — todos os gráficos e análises disponíveis.</span>';
-  if (resultsEl) resultsEl.prepend(banner);
-}
-
-// Detectar ?r= na URL ao carregar
-(function detectReportUrl() {
-  try {
-    const r = new URLSearchParams(location.search).get('r');
-    if (!r) return;
-    const data = JSON.parse(decodeURIComponent(escape(atob(r))));
-    if (!data.m || !data.l || !data.z) return; // dados inválidos
-    // Aguardar DOM pronto
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => loadReportFromUrl(data));
-    } else {
-      // DOM já pronto (script no fim da página)
-      setTimeout(() => loadReportFromUrl(data), 0);
-    }
-  } catch(e) {
-    console.warn('[DISC] URL de relatório inválida:', e);
   }
 })();
 </script>
