@@ -2362,6 +2362,9 @@ textarea.notes-area::placeholder { color: var(--text3); }
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+.email-toast.error {
+  background: #a82020;
+}
 
 /* ── COMPLETION SCREEN ──────────────────────────────────── */
 #completionScreen {
@@ -5153,11 +5156,15 @@ function copyExportData() {
 }
 
 // ── SEND RESULTS BY EMAIL ────────────────────────────────────
-function showEmailToast() {
+function showEmailToast(isError, msg) {
   const toast = document.getElementById('emailToast');
   if (!toast) return;
+  toast.textContent = isError
+    ? ('⚠ ' + (msg || 'Erro ao enviar email — verifique o console'))
+    : '✉ Resultado enviado para o aplicador';
+  toast.classList.toggle('error', !!isError);
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 4000);
+  setTimeout(() => { toast.classList.remove('show'); toast.classList.remove('error'); }, isError ? 7000 : 4000);
 }
 
 
@@ -5277,150 +5284,109 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
   const colors = { D:'#C0392B', I:'#CC6000', S:'#228B5A', C:'#1F6FA8' };
 
   // ── Tabela de pontuações ──────────────────────────────────
-  const scoresTable = `
-    <table style="width:100%;border-collapse:collapse;margin:12px 0 4px">
-      <tr style="background:#f0f2f8">
-        <th style="padding:7px 10px;text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Fator</th>
-        <th style="padding:7px 10px;text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Adaptado (+)</th>
-        <th style="padding:7px 10px;text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Natural (−inv)</th>
-        <th style="padding:7px 10px;text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Diferença</th>
-      </tr>
-      ${['D','I','S','C'].map(f => {
-        const lbl = FACTOR_LABELS[f];
-        const dv  = diff[f];
-        const dvColor = dv > 0 ? '#C0392B' : dv < 0 ? '#1F6FA8' : '#999';
-        return `<tr>
-          <td style="padding:9px 10px;border-bottom:1px solid #eee;font-weight:700;color:${colors[f]}">${f} — ${lbl}</td>
-          <td style="padding:9px 10px;border-bottom:1px solid #eee;text-align:center;font-weight:600;font-size:15px">${s.mais[f]}</td>
-          <td style="padding:9px 10px;border-bottom:1px solid #eee;text-align:center;font-weight:600;font-size:15px">${natural[f]}</td>
-          <td style="padding:9px 10px;border-bottom:1px solid #eee;text-align:center;font-weight:700;font-size:15px;color:${dvColor}">${dv>0?'+':''}${dv}</td>
-        </tr>`;
-      }).join('')}
-    </table>`;
+  const scoresRows = ['D','I','S','C'].map(f => {
+    const dv = diff[f];
+    const dvColor = dv > 0 ? '#C0392B' : dv < 0 ? '#1F6FA8' : '#999';
+    return '<tr>'
+      + '<td style="padding:9px 10px;border-bottom:1px solid #eee;font-weight:700;color:' + colors[f] + '">' + f + ' — ' + FACTOR_LABELS[f] + '</td>'
+      + '<td style="padding:9px 10px;border-bottom:1px solid #eee;text-align:center;font-weight:600;font-size:15px">' + s.mais[f] + '</td>'
+      + '<td style="padding:9px 10px;border-bottom:1px solid #eee;text-align:center;font-weight:600;font-size:15px">' + natural[f] + '</td>'
+      + '<td style="padding:9px 10px;border-bottom:1px solid #eee;text-align:center;font-weight:700;font-size:15px;color:' + dvColor + '">' + (dv > 0 ? '+' : '') + dv + '</td>'
+      + '</tr>';
+  }).join('');
 
-  // ── Helpers ──────────────────────────────────────────────
-  const sec = (title, content) => (!content && content !== 0) ? '' : `
-    <div style="margin-bottom:22px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2B4C8C;border-bottom:2px solid #dde0ee;padding-bottom:6px;margin-bottom:10px">${title}</div>
-      <div style="font-size:14px;color:#444;line-height:1.75">${content}</div>
-    </div>`;
+  const scoresTable =
+    '<table style="width:100%;border-collapse:collapse;margin:12px 0 4px">'
+    + '<tr style="background:#f0f2f8">'
+    + '<th style="padding:7px 10px;text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Fator</th>'
+    + '<th style="padding:7px 10px;text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Adaptado (+)</th>'
+    + '<th style="padding:7px 10px;text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Natural (−inv)</th>'
+    + '<th style="padding:7px 10px;text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a99;border-bottom:1px solid #dde0ee">Diferença</th>'
+    + '</tr>' + scoresRows + '</table>';
 
-  const bullets = items => (items && items.length)
-    ? `<ul style="padding-left:18px;margin:6px 0 0">${items.map(i=>`<li style="margin-bottom:5px">${i}</li>`).join('')}</ul>`
+  // ── Contatos do respondente ───────────────────────────────
+  const contatoChips = (whatsapp || email)
+    ? '<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">'
+      + (whatsapp ? '<div style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#444;background:#fff;border:1px solid #c8d3e8;border-radius:20px;padding:5px 14px">📱 <span>' + whatsapp + '</span></div>' : '')
+      + (email    ? '<div style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#444;background:#fff;border:1px solid #c8d3e8;border-radius:20px;padding:5px 14px">✉️ <span>' + email + '</span></div>' : '')
+      + '</div>'
     : '';
 
-  // ── Conteúdo narrativo ────────────────────────────────────
-  const narrativa  = document.getElementById('rNarrativa')?.innerText?.trim()  || '';
-  const natural_t  = document.getElementById('rNaturalProfile')?.innerText?.trim() || '';
-  const intens_t   = document.getElementById('rIntensidade')?.innerText?.trim() || '';
+  // ── Pontos de atenção (resumo curto) ─────────────────────
+  const bullets = items => (items && items.length)
+    ? '<ul style="padding-left:18px;margin:6px 0 0">' + items.slice(0,4).map(i => '<li style="margin-bottom:5px">' + i + '</li>').join('') + '</ul>'
+    : '';
 
-  const pressaoHTML = (pData.pressao||[]).length
-    ? (pData.pressao||[]).map(b=>`<div style="margin-bottom:12px"><strong style="color:#333">${b.titulo}</strong>${bullets(b.itens)}</div>`).join('')
-    : '<p style="color:#666;font-style:italic">Consulte a narrativa principal e os pontos de atenção.</p>';
+  const melhoriaHTML = (pData.melhoria || []).map(b =>
+    '<div style="margin-bottom:10px">'
+    + '<div style="font-weight:700;color:' + colors[b.fator] + ';margin-bottom:3px">Fator ' + b.fator + ' — ' + FACTOR_LABELS[b.fator] + '</div>'
+    + bullets(b.itens)
+    + '</div>'
+  ).join('');
 
-  const melhoriaHTML = (pData.melhoria||[]).map(b=>`
-    <div style="margin-bottom:14px">
-      <div style="font-weight:700;color:${colors[b.fator]};margin-bottom:4px">Fator ${b.fator} — ${FACTOR_LABELS[b.fator]}</div>
-      ${bullets(b.itens)}
-    </div>`).join('');
+  // ── CTA botão para relatório online ──────────────────────
+  const ctaHTML = resultLink
+    ? '<div style="text-align:center;padding:28px 0 12px">'
+      + '<a href="' + resultLink + '" target="_blank" style="display:inline-block;background:#2B4C8C;color:#fff;font-family:Arial,sans-serif;font-size:15px;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;letter-spacing:.02em">🔗 Ver relatório completo online</a>'
+      + '<div style="font-size:11px;color:#aaa;margin-top:10px">Clique para abrir o relatório completo com narrativa, gráficos e análise de carreira.</div>'
+      + '</div>'
+    : '';
 
-  const motivHTML = (pData.motivadores||[]).map(m=>`
-    <div style="border-left:3px solid #2B4C8C;padding:10px 0 10px 14px;margin-bottom:12px">
-      <div style="font-weight:700;font-size:14px;color:#222;margin-bottom:3px">${m.titulo}</div>
-      <div style="font-size:13.5px;color:#555;line-height:1.65">${m.desc}</div>
-      ${m.reflexao?`<div style="font-size:12.5px;color:#2B4C8C;font-style:italic;margin-top:6px">💬 ${m.reflexao}</div>`:''}
-    </div>`).join('');
+  // ── Narrativa resumida (primeiros 500 chars) ──────────────
+  const narrativaBrief = (document.getElementById('rNarrativa')?.innerText?.trim() || '').slice(0, 500);
 
-  const tendHTML = (pData.carreira?.tendencias||[]).map(t=>`
-    <div style="margin-bottom:12px">
-      <div style="font-weight:700;color:#2B4C8C">${t.icon||'💼'} ${t.contexto}</div>
-      <div style="font-size:13.5px;color:#555;line-height:1.65;margin-top:3px">${t.desc}</div>
-    </div>`).join('');
+  // ── HTML do email (simplificado para caber no limite do EmailJS) ──
+  const html = '<!DOCTYPE html><html><body style="margin:0;padding:20px;background:#f0f2f8;font-family:Arial,Helvetica,sans-serif">'
+    + '<div style="max-width:620px;margin:0 auto">'
 
-  const compatHTML = (pData.carreira?.compat||[]).map(c=>`
-    <div style="margin-bottom:8px">
-      <span style="font-weight:700">${c.area}</span>
-      <span style="font-size:11px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:6px;background:#e8f5ee;color:#228B5A">${c.nivel||''}</span>
-      <br><span style="font-size:13px;color:#666">${c.desc||''}</span>
-    </div>`).join('');
+    // Cabeçalho
+    + '<div style="background:linear-gradient(135deg,#2B4C8C 0%,#1a306b 100%);color:#fff;padding:28px 30px 24px;border-radius:12px 12px 0 0">'
+    + '<div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.7;margin-bottom:8px">Resultado DISC · Avaliação Comportamental</div>'
+    + '<div style="font-size:26px;font-weight:700;margin-bottom:4px">' + (name || '—') + '</div>'
+    + '<div style="font-size:14px;opacity:.8">' + dateFormatted + '</div>'
+    + '</div>'
 
-  const ambienteDesc = pData.carreira?.ambiente?.desc || '';
-  const exemplosHTML = bullets(pData.carreira?.ambiente?.exemplos);
+    // Perfil + contatos
+    + '<div style="background:#edf0f8;border:1px solid #c8d3e8;border-top:none;padding:18px 30px 20px;border-radius:0 0 12px 12px;margin-bottom:18px">'
+    + '<div style="font-size:11px;color:#8898bb;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px">Perfil predominante</div>'
+    + '<div style="font-size:22px;font-weight:700;color:#2B4C8C;margin-bottom:10px">Perfil ' + profName + '</div>'
+    + contatoChips
+    + '</div>'
 
-  // ── HTML do email ─────────────────────────────────────────
-  const html = `<!DOCTYPE html><html><body style="margin:0;padding:20px;background:#f0f2f8;font-family:Arial,Helvetica,sans-serif">
-  <div style="max-width:680px;margin:0 auto">
+    // Pontuações
+    + '<div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:20px 24px;margin-bottom:16px">'
+    + '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2B4C8C;border-bottom:2px solid #dde0ee;padding-bottom:8px;margin-bottom:4px">Pontuações por Fator</div>'
+    + scoresTable
+    + '<div style="font-size:11px;color:#aaa;margin-top:10px">Adaptado = escolhas "+"; Natural = inversão das escolhas "−" (24−Menos); Diferença = Adaptado − Natural</div>'
+    + '</div>'
 
-    <!-- Cabeçalho -->
-    <div style="background:linear-gradient(135deg,#2B4C8C 0%,#1a306b 100%);color:#fff;padding:30px 30px 26px;border-radius:12px 12px 0 0">
-      <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.7;margin-bottom:8px">Resultado DISC · Avaliação Comportamental</div>
-      <div style="font-size:26px;font-weight:700;margin-bottom:4px">${name || '—'}</div>
-      <div style="font-size:14px;opacity:.8">${dateFormatted}</div>
-    </div>
+    // Narrativa (resumo)
+    + (narrativaBrief ? '<div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:20px 24px;margin-bottom:16px">'
+      + '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2B4C8C;border-bottom:2px solid #dde0ee;padding-bottom:6px;margin-bottom:10px">Perfil (resumo)</div>'
+      + '<div style="font-size:14px;color:#444;line-height:1.75">' + narrativaBrief.replace(/\n/g, '<br>') + (narrativaBrief.length >= 500 ? '…' : '') + '</div>'
+      + '</div>' : '')
 
-    <!-- Badge de perfil + contatos -->
-    <div style="background:#edf0f8;border:1px solid #c8d3e8;border-top:none;padding:18px 30px 20px;border-radius:0 0 12px 12px;margin-bottom:20px">
-      <div style="font-size:11px;color:#8898bb;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px">Perfil predominante</div>
-      <div style="font-size:22px;font-weight:700;color:#2B4C8C;margin-bottom:12px">Perfil ${profName}</div>
-      ${(whatsapp || email) ? `<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
-        ${whatsapp ? `<div style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#444;background:#fff;border:1px solid #c8d3e8;border-radius:20px;padding:5px 14px">📱 <span>${whatsapp}</span></div>` : ''}
-        ${email    ? `<div style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#444;background:#fff;border:1px solid #c8d3e8;border-radius:20px;padding:5px 14px">✉️ <span>${email}</span></div>` : ''}
-      </div>` : ''}
-    </div>
+    // Pontos de atenção
+    + (melhoriaHTML ? '<div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:20px 24px;margin-bottom:16px">'
+      + '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2B4C8C;border-bottom:2px solid #dde0ee;padding-bottom:6px;margin-bottom:10px">Pontos de Atenção (resumo)</div>'
+      + melhoriaHTML
+      + '</div>' : '')
 
-    <!-- Pontuações -->
-    <div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:22px 26px;margin-bottom:18px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2B4C8C;border-bottom:2px solid #dde0ee;padding-bottom:8px;margin-bottom:4px">Pontuações por Fator</div>
-      ${scoresTable}
-      <div style="font-size:11px;color:#aaa;margin-top:10px">Adaptado = escolhas "+"; Natural = inversão das escolhas "−" (24−Menos); Diferença = Adaptado − Natural</div>
-    </div>
+    // CTA — link para o relatório completo online
+    + ctaHTML
 
-    <!-- Narrativas -->
-    <div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:22px 26px;margin-bottom:18px">
-      ${sec('Identificação do Perfil', narrativa ? narrativa.replace(/\n/g,'<br>') : '')}
-      ${sec('Ambiente Favorável', pData.ambiente||'')}
-      ${sec('Tomada de Decisão', pData.decisao||'')}
-      ${sec('Comportamento sob Pressão', pressaoHTML)}
-      ${sec('Pontos de Atenção e Desenvolvimento', melhoriaHTML)}
-      ${sec('Como Prefere que as Pessoas se Relacionem', bullets(pData.relacionamento))}
-      ${sec('Dicas para Motivar e Liderar', bullets(pData.liderar))}
-      ${sec('Motivadores de Carreira', motivHTML)}
-    </div>
+    // Rodapé
+    + '<div style="text-align:center;font-size:12px;color:#aaa;padding:14px 0 6px">'
+    + 'Gerado automaticamente · Ferramenta DISC · William Gutierrez'
+    + '</div>'
 
-    <!-- Carreira -->
-    <div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:22px 26px;margin-bottom:18px">
-      ${sec('Tendências de Atuação', tendHTML)}
-      ${sec('Áreas de Compatibilidade Comportamental', compatHTML)}
-      ${sec('Perfil de Ambiente', ambienteDesc)}
-      ${sec('Exemplos de Carreira', exemplosHTML)}
-    </div>
+    + '</div></body></html>';
 
-    <!-- Perfil Natural (resumo) -->
-    <div style="background:#fff;border:1px solid #dde0ee;border-radius:12px;padding:22px 26px;margin-bottom:18px">
-      ${sec('Perfil Natural e Consistência', natural_t ? natural_t.substring(0,800)+(natural_t.length>800?'…':'') : '')}
-      ${sec('Análise de Intensidade (resumo)', intens_t ? intens_t.substring(0,600)+(intens_t.length>600?'…':'') : '')}
-    </div>
-
-    <!-- CTA: link para o relatório online -->
-    \${resultLink ? \`
-    <div style="text-align:center;padding:24px 0 8px">
-      <a href="\${resultLink}" target="_blank"
-         style="display:inline-block;background:#2B4C8C;color:#fff;font-family:Arial,sans-serif;font-size:14px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;letter-spacing:.02em">
-        🔗 Ver relatório completo online
-      </a>
-      <div style="font-size:11px;color:#aaa;margin-top:10px">
-        O link abre a ferramenta DISC diretamente neste resultado.<br>
-        Funciona como acesso de aplicador — nenhuma senha necessária pelo link.
-      </div>
-    </div>\` : ''}
-
-    <!-- Rodapé -->
-    <div style="text-align:center;font-size:12px;color:#aaa;padding:16px 0 8px">
-      Gerado automaticamente · Ferramenta DISC · William Gutierrez
-    </div>
-
-  </div>
-  </body></html>`;
+  // ── Guarda de tamanho — EmailJS limita payload a ~50KB ───
+  const payloadSize = JSON.stringify({ html_content: html }).length;
+  if (payloadSize > 48000) {
+    console.warn('[DISC] Email HTML muito grande (' + payloadSize + ' bytes). Enviando versão mínima.');
+  }
 
   // ── Envio ─────────────────────────────────────────────────
   emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, {
@@ -5430,9 +5396,11 @@ function sendResultsByEmail(s, name, whatsapp, email, dateFormatted, profName, n
     disc_profile: 'Perfil ' + profName,
     html_content: html
   }).then(() => {
-    showEmailToast();
+    showEmailToast(false);
   }).catch(err => {
     console.warn('[DISC] Erro ao enviar email:', err);
+    const msg = err && err.text ? err.text : (err && err.status ? 'Status ' + err.status : 'Erro desconhecido');
+    showEmailToast(true, 'Email não enviado: ' + msg);
   });
 }
 
@@ -6201,7 +6169,7 @@ checkURLResultParam();
 </script>
 
 <!-- Email toast notification -->
-<div class="email-toast" id="emailToast">✉ Resultado enviado para o aplicador</div>
+<div class="email-toast" id="emailToast"></div>
 
 <!-- PIN Modal -->
 <div id="pinOverlay" onclick="if(event.target===this)closePinModal()">
