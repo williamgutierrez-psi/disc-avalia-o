@@ -71,48 +71,47 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0 10%;
+  padding: 5% 9% 4%;
   gap: 0;
 }
 
 /* Compass */
 .cov-compass {
-  width: min(42%, 200px);
+  width: min(52%, 230px);
   height: auto;
   object-fit: contain;
-  margin-bottom: 5%;
+  margin: 0 auto 4%;
   display: block;
 }
 
 /* Eyebrow label */
 .cov-eyebrow {
   font-family: var(--ff-cov-b);
-  font-size: clamp(7px, 1.4%, 10px);
+  font-size: clamp(8px, 1.6%, 10px);
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--cov-sageDk);
-  margin-bottom: 3.5%;
+  margin-bottom: 3%;
   align-self: flex-start;
 }
 
 /* Slogan */
 .cov-slogan {
   align-self: flex-start;
-  margin-bottom: 7%;
+  margin-bottom: 4%;
 }
 .cov-slogan-bold {
   font-family: var(--ff-cov);
-  font-size: clamp(22px, 7%, 44px);
+  font-size: clamp(26px, 8.5%, 44px);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.06;
   color: var(--cov-navy2);
   letter-spacing: -0.015em;
   display: block;
 }
 .cov-slogan-hirow {
-  margin-top: 2%;
+  margin-top: 3px;
   display: block;
 }
 .cov-slogan-highlight {
@@ -126,12 +125,45 @@
 }
 .cov-slogan-italic {
   font-family: var(--ff-cov);
-  font-size: clamp(22px, 7%, 44px);
+  font-size: clamp(26px, 8.5%, 44px);
   font-weight: 700;
   font-style: italic;
   line-height: 1.12;
   color: var(--cov-navy2);
   letter-spacing: -0.015em;
+}
+
+/* Divider between slogan and person */
+.cov-divider {
+  align-self: stretch;
+  height: 1px;
+  background: var(--cov-border);
+  margin: 3% 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Person name block */
+.cov-person-block {
+  align-self: flex-start;
+  margin-bottom: 3%;
+}
+.cov-person-label {
+  font-family: var(--ff-cov-b);
+  font-size: clamp(7px, 1.4%, 9px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cov-sageDk);
+  margin-bottom: 4px;
+}
+.cov-person-name {
+  font-family: var(--ff-cov);
+  font-size: clamp(16px, 4%, 24px);
+  font-weight: 700;
+  color: var(--cov-navy);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
 }
 
 /* Badge */
@@ -142,7 +174,7 @@
   gap: 8px;
   border: 1.5px solid var(--cov-border);
   border-radius: 4px;
-  padding: min(2%, 8px) min(3.5%, 14px);
+  padding: 6px 12px;
 }
 .cov-badge-dot {
   width: 7px; height: 7px;
@@ -154,7 +186,7 @@
 }
 .cov-badge-text {
   font-family: var(--ff-cov-b);
-  font-size: clamp(8px, 1.5%, 11px);
+  font-size: clamp(8px, 1.6%, 10px);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -173,27 +205,27 @@
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
-.cov-footer-col { display: flex; flex-direction: column; gap: 2px; }
+.cov-footer-col { display: flex; flex-direction: column; gap: 3px; }
 .cov-footer-name {
   font-family: var(--ff-cov-b);
-  font-size: clamp(9px, 1.8%, 12px);
+  font-size: clamp(10px, 2%, 13px);
   font-weight: 600;
   color: var(--cov-navy);
 }
 .cov-footer-crp {
   font-family: var(--ff-cov-b);
-  font-size: clamp(8px, 1.5%, 10px);
+  font-size: clamp(9px, 1.8%, 11px);
   color: var(--cov-muted);
 }
 .cov-footer-contact {
   font-family: var(--ff-cov-b);
-  font-size: clamp(8px, 1.5%, 10px);
+  font-size: clamp(9px, 1.8%, 11px);
   color: var(--cov-muted);
   text-align: right;
 }
 .cov-footer-site {
   font-family: var(--ff-cov-b);
-  font-size: clamp(8px, 1.5%, 10px);
+  font-size: clamp(9px, 1.8%, 11px);
   font-weight: 500;
   color: var(--cov-green);
   text-align: right;
@@ -2439,15 +2471,15 @@ textarea.notes-area::placeholder { color: var(--text3); }
 }
 .cs-btn:hover { opacity: .9; transform: translateY(-1px); }
 .cs-btn-sec {
-  background: transparent;
-  color: var(--text3);
-  box-shadow: none;
-  font-weight: 500;
+  background: var(--cov-green, #1A6B52);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(26,107,82,.3);
+  font-weight: 600;
   font-size: 14px;
-  padding: 10px 24px;
-  border: 1.5px solid var(--border);
+  padding: 12px 28px;
+  border: none;
 }
-.cs-btn-sec:hover { background: var(--bg); color: var(--text1); }
+.cs-btn-sec:hover { opacity: .88; transform: translateY(-1px); }
 
 /* ── PIN MODAL ──────────────────────────────────────────── */
 #pinOverlay {
@@ -2777,6 +2809,13 @@ textarea.notes-area::placeholder { color: var(--text3); }
           </span>
         </div>
 
+        <div class="cov-divider"></div>
+
+        <div class="cov-person-block">
+          <div class="cov-person-label">Relatório de</div>
+          <div class="cov-person-name" id="covPersonName"></div>
+        </div>
+
         <div class="cov-badge-wrap">
           <div class="cov-badge">
             <div class="cov-badge-dot"></div>
@@ -2790,8 +2829,9 @@ textarea.notes-area::placeholder { color: var(--text3); }
           <span class="cov-footer-name">William Gutierrez</span>
           <span class="cov-footer-crp">Psicólogo · CRP 06/234094</span>
         </div>
-        <div class="cov-footer-col">
-          <span class="cov-footer-contact">@metodobussola</span>
+        <div class="cov-footer-col" style="align-items:flex-end">
+          <span class="cov-footer-contact">📷 @williamgutierrez.psi</span>
+          <span class="cov-footer-contact">📱 (19) 99858-5655</span>
           <span class="cov-footer-site">bussola.williamgutierrez.com.br</span>
         </div>
       </div>
@@ -5555,6 +5595,8 @@ function renderResults(s) {
 
   const finalidade = (document.getElementById('pFinalidade')?.value || '').trim();
   document.getElementById('rName').textContent = name || '—';
+  const covPN = document.getElementById('covPersonName');
+  if (covPN) covPN.textContent = name || '';
   document.getElementById('rDate').textContent =
     d.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'});
   const rFin = document.getElementById('rFinalidade');
