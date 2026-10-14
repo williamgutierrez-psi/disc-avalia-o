@@ -1826,6 +1826,85 @@ input.field-invalid {
 
   /* ── Print-only disclaimer footer ── */
   #printDisclaimer { display: block !important; }
+
+  /* ── Print cover page ── */
+  #printCover {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    page-break-after: always;
+    break-after: page;
+    padding: 60px 40px;
+    background: #fff !important;
+  }
+  #printCover .pc-logo {
+    width: 90px; height: 90px;
+    margin-bottom: 28px;
+  }
+  #printCover .pc-brand-name {
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  #printCover .pc-brand-by {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 48px;
+    letter-spacing: .06em;
+  }
+  #printCover .pc-divider {
+    width: 48px; height: 2px;
+    background: #1a3a6b;
+    margin: 0 auto 48px;
+  }
+  #printCover .pc-label {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+  #printCover .pc-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  #printCover .pc-badge {
+    display: inline-block;
+    background: #1a3a6b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    padding: 7px 22px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+  }
+  #printCover .pc-nat-badge {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 48px;
+  }
+  #printCover .pc-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+  }
+  #printCover .pc-date {
+    font-size: 13px;
+    color: #888;
+  }
+
+  /* Hide hint bar and apl-access on print */
+  .apl-hint-bar, .apl-access-btn { display: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2388,6 +2467,9 @@ textarea.notes-area::placeholder { color: var(--text3); }
 .apl-access-btn:hover { color: var(--text2); }
 /* Hide applicator-access button when already in apl mode */
 #results:not(.mode-resp) .apl-access-btn { display: none; }
+/* Applicator hint bar — top of results, resp mode only */
+.apl-hint-bar { display: none; text-align: right; padding: 6px 0 4px; }
+#results.mode-resp .apl-hint-bar { display: block; }
 
 /* ── MOBILE EXTRAS ─────────────────────────────────────── */
 @media (max-width: 520px) {
@@ -2402,6 +2484,8 @@ textarea.notes-area::placeholder { color: var(--text3); }
   .cs-subtitle { font-size: 14px; }
   .pin-modal { padding: 24px 18px 20px; }
 }
+/* Print cover: hidden on screen */
+#printCover { display: none; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
@@ -2550,8 +2634,8 @@ textarea.notes-area::placeholder { color: var(--text3); }
   </div>
 
   <!-- ─── MODAL AGENDAMENTO ─────────────────────────── -->
-  <div id="scheduleModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px">
-    <div style="background:var(--card);border-radius:18px;padding:36px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.25)">
+  <div id="scheduleModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:20px">
+    <div style="background:var(--surface);border-radius:18px;padding:36px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.45);position:relative;z-index:9001">
       <div style="font-size:48px;margin-bottom:12px">📅</div>
       <div style="font-size:20px;font-weight:700;color:var(--text1);margin-bottom:8px">Agendar devolutiva</div>
       <div style="font-size:14px;color:var(--text3);margin-bottom:24px;line-height:1.5">
@@ -2565,6 +2649,23 @@ textarea.notes-area::placeholder { color: var(--text3); }
         Agora não
       </button>
     </div>
+  </div>
+
+  <!-- ─── PRINT COVER (hidden on screen, first page on print) ── -->
+  <div id="printCover">
+    <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
+         alt="Método Bússola" class="pc-logo"
+         onerror="this.style.display='none'">
+    <div class="pc-brand-name">Método Bússola</div>
+    <div class="pc-brand-by">William Gutierrez</div>
+    <div class="pc-divider"></div>
+    <div class="pc-label">Avaliação Comportamental</div>
+    <div class="pc-title">Perfil Comportamental DISC</div>
+    <div class="pc-badge" id="pcBadge">—</div>
+    <div class="pc-nat-badge" id="pcNatBadge" style="display:none"></div>
+    <div style="flex:1;min-height:48px"></div>
+    <div class="pc-name" id="pcName"></div>
+    <div class="pc-date" id="pcDate"></div>
   </div>
 
   <!-- ─── RESULTS ────────────────────────────────────── -->
@@ -2583,6 +2684,11 @@ textarea.notes-area::placeholder { color: var(--text3); }
         <span class="mode-preview-label">👁 Pré-visualização · Modo Respondente</span>
         <button class="mode-btn-back" onclick="setMode('apl')">← Sair da pré-visualização</button>
       </div>
+    </div>
+
+    <!-- Applicator hint — visible only in respondent mode, at the top -->
+    <div class="apl-hint-bar">
+      <button class="apl-access-btn" style="margin:0;font-size:12px;padding:6px 14px;border:1px solid var(--border);border-radius:20px;display:inline-flex;align-items:center;gap:6px" onclick="openPinModal()">🔐 Aplicador? Acesse aqui</button>
     </div>
 
     <!-- Devolutiva card (visible only in respondente mode) -->
@@ -3930,6 +4036,9 @@ function renderNaturalProfile(s, adaptedProf, natural, diff) {
   if (!isSame) {
     document.getElementById('rNatBadge').hidden = false;
     document.getElementById('rNatBadgeText').textContent = natName;
+    // Print cover natural badge
+    const pcNat = document.getElementById('pcNatBadge');
+    if (pcNat) { pcNat.textContent = 'Natural: '+natName; pcNat.style.display = 'block'; }
   }
 
   // Factor diff cells
@@ -4915,6 +5024,15 @@ function renderResults(s) {
 
   document.getElementById('rProfileBadge').textContent = 'Perfil '+profName;
 
+  // ── Populate print cover ──────────────────────────────
+  const pcName = document.getElementById('pcName');
+  const pcDate = document.getElementById('pcDate');
+  const pcBadge = document.getElementById('pcBadge');
+  const pcNatBadge = document.getElementById('pcNatBadge');
+  if (pcName)  pcName.textContent  = name || '—';
+  if (pcDate)  pcDate.textContent  = d.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'});
+  if (pcBadge) pcBadge.textContent = 'Perfil '+profName;
+
   // Compute Natural (Graph II = 24 − Menos) and Difference (Graph III = Adapted − Natural)
   const natural = {D:24-s.menos.D, I:24-s.menos.I, S:24-s.menos.S, C:24-s.menos.C};
   const diff    = {D:s.mais.D-natural.D, I:s.mais.I-natural.I, S:s.mais.S-natural.S, C:s.mais.C-natural.C};
@@ -5164,12 +5282,13 @@ function renderProfileGraphs(s) {
   const MIDLINE   = 6;   // média teórica: 24 blocos / 4 fatores
   const MAX_Y     = 14;
   const MIN_Y     = 0;
-  const DIFF_MAX  = 10;
-  const DIFF_MIN  = -10;
-
   const naturalScores = {D:24-s.menos.D, I:24-s.menos.I, S:24-s.menos.S, C:24-s.menos.C};
   const diff = {};
   FACTORS.forEach(f => diff[f] = s.mais[f] - naturalScores[f]);
+
+  const DIFF_MAX  = 2;
+  const rawMinDiff = Math.min(diff.D, diff.I, diff.S, diff.C);
+  const DIFF_MIN  = Math.min(rawMinDiff - 2, -10);
 
   const graphs = [
     { label:'Perfil Percebido',   sub:'Como você tende a se apresentar',              scores: s.mais,        isDiff:false, showMeio:true  },
