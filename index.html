@@ -1827,80 +1827,142 @@ input.field-invalid {
   /* ── Print-only disclaimer footer ── */
   #printDisclaimer { display: block !important; }
 
-  /* ── Print cover page ── */
+  /* ── Print cover page (Rodrigo style) ── */
   #printCover {
     display: flex !important;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     min-height: 100vh;
     page-break-after: always;
     break-after: page;
-    padding: 60px 40px;
-    background: #fff !important;
+    padding: 0;
+    background: #FAF6F1 !important;
+    box-sizing: border-box;
+  }
+  /* Header bar */
+  #printCover .pc-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #DDD5C8;
+  }
+  #printCover .pc-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   #printCover .pc-logo {
-    width: 90px; height: 90px;
-    margin-bottom: 28px;
+    width: 38px;
+    height: 38px;
   }
   #printCover .pc-brand-name {
     font-size: 13px;
+    font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: #888;
-    margin-bottom: 4px;
+    color: #1A6B52;
   }
-  #printCover .pc-brand-by {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 48px;
-    letter-spacing: .06em;
-  }
-  #printCover .pc-divider {
-    width: 48px; height: 2px;
-    background: #1a3a6b;
-    margin: 0 auto 48px;
-  }
-  #printCover .pc-label {
-    font-size: 11px;
-    letter-spacing: .18em;
+  #printCover .pc-header-badge {
+    font-size: 10px;
+    letter-spacing: .16em;
     text-transform: uppercase;
-    color: #aaa;
+    color: #8A9BAC;
+    font-weight: 600;
+    border: 1px solid #DDD5C8;
+    border-radius: 20px;
+    padding: 5px 14px;
+  }
+  /* Center content */
+  #printCover .pc-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    padding: 40px 40px 20px;
+  }
+  #printCover .pc-big-logo {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 36px;
+  }
+  #printCover .pc-tagline {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    color: #344763;
+    line-height: 1.4;
+    max-width: 420px;
     margin-bottom: 10px;
   }
-  #printCover .pc-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 20px;
+  #printCover .pc-label {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #8A9BAC;
+    margin-top: 12px;
+  }
+  /* Bottom: person info */
+  #printCover .pc-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 40px 48px;
+    box-sizing: border-box;
+  }
+  #printCover .pc-separator {
+    width: 100%;
+    max-width: 400px;
+    height: 1px;
+    background: #DDD5C8;
+    margin-bottom: 28px;
+  }
+  #printCover .pc-relatorio-de {
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #8A9BAC;
+    margin-bottom: 8px;
+  }
+  #printCover .pc-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #223245;
+    margin-bottom: 16px;
     line-height: 1.2;
   }
   #printCover .pc-badge {
-    display: inline-block;
-    background: #1a3a6b;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #1A6B52;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: .08em;
-    padding: 7px 22px;
+    text-transform: uppercase;
+    padding: 8px 22px;
     border-radius: 30px;
-    margin-bottom: 12px;
-  }
-  #printCover .pc-nat-badge {
-    font-size: 12px;
-    color: #555;
-    margin-bottom: 48px;
-  }
-  #printCover .pc-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: #111;
     margin-bottom: 8px;
   }
+  #printCover .pc-nat-badge {
+    font-size: 11.5px;
+    color: #5A6E7F;
+    margin-top: 6px;
+    letter-spacing: .03em;
+  }
   #printCover .pc-date {
-    font-size: 13px;
-    color: #888;
+    font-size: 12px;
+    color: #8A9BAC;
+    margin-top: 10px;
   }
 
   /* Hide hint bar and apl-access on print */
@@ -2653,19 +2715,33 @@ textarea.notes-area::placeholder { color: var(--text3); }
 
   <!-- ─── PRINT COVER (hidden on screen, first page on print) ── -->
   <div id="printCover">
-    <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
-         alt="Método Bússola" class="pc-logo"
-         onerror="this.style.display='none'">
-    <div class="pc-brand-name">Método Bússola</div>
-    <div class="pc-brand-by">William Gutierrez</div>
-    <div class="pc-divider"></div>
-    <div class="pc-label">Avaliação Comportamental</div>
-    <div class="pc-title">Perfil Comportamental DISC</div>
-    <div class="pc-badge" id="pcBadge">—</div>
-    <div class="pc-nat-badge" id="pcNatBadge" style="display:none"></div>
-    <div style="flex:1;min-height:48px"></div>
-    <div class="pc-name" id="pcName"></div>
-    <div class="pc-date" id="pcDate"></div>
+    <!-- Cabeçalho -->
+    <div class="pc-header">
+      <div class="pc-header-brand">
+        <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
+             alt="Método Bússola" class="pc-logo"
+             onerror="this.style.display='none'">
+        <div class="pc-brand-name">Método Bússola</div>
+      </div>
+      <div class="pc-header-badge">Avaliação Comportamental</div>
+    </div>
+    <!-- Centro: logo grande + tagline -->
+    <div class="pc-center">
+      <img src="https://bussola.williamgutierrez.com.br/assets/logo-bussola.webp"
+           alt="Método Bússola" class="pc-big-logo"
+           onerror="this.style.display='none'">
+      <div class="pc-tagline">Escolha sua próxima direção profissional sem recomeçar do zero.</div>
+      <div class="pc-label">Avaliação Comportamental DISC</div>
+    </div>
+    <!-- Base: dados do avaliado -->
+    <div class="pc-bottom">
+      <div class="pc-separator"></div>
+      <div class="pc-relatorio-de">Relatório de</div>
+      <div class="pc-name" id="pcName"></div>
+      <div class="pc-badge" id="pcBadge">● Relatório Completo</div>
+      <div class="pc-nat-badge" id="pcNatBadge" style="display:none"></div>
+      <div class="pc-date" id="pcDate"></div>
+    </div>
   </div>
 
   <!-- ─── RESULTS ────────────────────────────────────── -->
@@ -4036,9 +4112,13 @@ function renderNaturalProfile(s, adaptedProf, natural, diff) {
   if (!isSame) {
     document.getElementById('rNatBadge').hidden = false;
     document.getElementById('rNatBadgeText').textContent = natName;
-    // Print cover natural badge
+    // Print cover: append natural profile info
     const pcNat = document.getElementById('pcNatBadge');
-    if (pcNat) { pcNat.textContent = 'Natural: '+natName; pcNat.style.display = 'block'; }
+    if (pcNat) {
+      const adapted = pcNat.textContent.replace(/\s*·.*/, ''); // keep adapted part if any
+      pcNat.textContent = adapted + ' · Natural: ' + natName;
+      pcNat.style.display = 'block';
+    }
   }
 
   // Factor diff cells
@@ -5031,7 +5111,8 @@ function renderResults(s) {
   const pcNatBadge = document.getElementById('pcNatBadge');
   if (pcName)  pcName.textContent  = name || '—';
   if (pcDate)  pcDate.textContent  = d.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'});
-  if (pcBadge) pcBadge.textContent = 'Perfil '+profName;
+  // pcBadge keeps static "● Relatório Completo" text from HTML; show profile name in nat-badge slot
+  if (pcNatBadge) { pcNatBadge.textContent = 'Perfil ' + profName; pcNatBadge.style.display = 'block'; }
 
   // Compute Natural (Graph II = 24 − Menos) and Difference (Graph III = Adapted − Natural)
   const natural = {D:24-s.menos.D, I:24-s.menos.I, S:24-s.menos.S, C:24-s.menos.C};
@@ -5280,11 +5361,18 @@ function renderProfileGraphs(s) {
   const FACTORS   = ['D','I','S','C'];
   const COLORS    = {D:'#C0392B', I:'#E67E22', S:'#27AE60', C:'#2980B9'};
   const MIDLINE   = 6;   // média teórica: 24 blocos / 4 fatores
-  const MAX_Y     = 14;
   const MIN_Y     = 0;
   const naturalScores = {D:24-s.menos.D, I:24-s.menos.I, S:24-s.menos.S, C:24-s.menos.C};
   const diff = {};
   FACTORS.forEach(f => diff[f] = s.mais[f] - naturalScores[f]);
+
+  // Dynamic MAX_Y — covers all non-diff values with 1pt buffer, minimum 14
+  const rawMaxY = Math.max(
+    s.mais.D, s.mais.I, s.mais.S, s.mais.C,
+    naturalScores.D, naturalScores.I, naturalScores.S, naturalScores.C,
+    s.meio.D, s.meio.I, s.meio.S, s.meio.C
+  );
+  const MAX_Y = Math.max(rawMaxY + 1, 14);
 
   const DIFF_MAX  = 2;
   const rawMinDiff = Math.min(diff.D, diff.I, diff.S, diff.C);
